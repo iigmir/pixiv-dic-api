@@ -1,7 +1,7 @@
-import { GenerateBreadcrumb as generate_breadcrumb } from "./Encyclopedia/breadcrumb.js";
-import PageSourceDOM from "./Encyclopedia/dom.js";
-import PageStatus from "./Encyclopedia/status.js";
-import PixpediaSummary from "./Encyclopedia/summary.js";
+import { GenerateBreadcrumb as generate_breadcrumb } from "./breadcrumb.js";
+import PageSourceDOM from "./dom.js";
+import PageStatus from "./status.js";
+import PixpediaSummary from "./summary.js";
 
 /**
  * The encyclopedia object.

@@ -1,4 +1,4 @@
-import { GetEncyclopediaEntry } from "../../api/pixiv.js";
+import { GetEncyclopediaEntry } from "../api/pixiv.js";
 import { JSDOM } from "jsdom";
 
 /**

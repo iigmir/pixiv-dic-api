@@ -1,5 +1,5 @@
-import { ExampleRequest } from "../api/example.js";
-import { GetTag, GetEncyclopediaEntry } from "../api/pixiv.js";
+import { ExampleRequest } from "../app/api/example.js";
+import { GetTag, GetEncyclopediaEntry } from "../app/api/pixiv.js";
 import { strictEqual } from "assert";
 
 describe("AJAX module", () => {

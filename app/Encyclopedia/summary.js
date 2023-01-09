@@ -1,4 +1,4 @@
-import { GetTag } from "../../api/pixiv.js";
+import { GetTag } from "../api/pixiv.js";
 
 /**
  * Summary
