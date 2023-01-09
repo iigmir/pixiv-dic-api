@@ -11,7 +11,6 @@ class PixpediaContentParser {
      * Render contents
      */
     set_contents() {
-        // debugger;
         // States
         let result = [];
         let section = {
@@ -22,9 +21,9 @@ class PixpediaContentParser {
         this.articles_source.forEach( (dom = Element) => {
             const is_new_section = dom.nodeName === "H2";
             if( is_new_section ) {
-                section.title = dom.textContent;
                 result.push( section );
                 section = { title: "Preface", contents: [] };
+                section.title = dom.textContent;
             } else {
                 section.contents.push({
                     source: dom.innerHTML
