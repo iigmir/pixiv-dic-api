@@ -145,7 +145,7 @@ describe("Parser module", () => {
             // Functions
             const response = await main(vaild_input);
             const content = response.content;
-            strictEqual( content.length > 0, true );
+            strictEqual( content.length, 8 );
         });
     });
     describe("when somnething's wrong", () => {

@@ -18,6 +18,7 @@ class PixpediaContentParser {
             contents: []
         };
         // List
+        // console.log(this.articles_source.length);
         this.articles_source.forEach( (dom = Element) => {
             const is_new_section = dom.nodeName === "H2";
             if( is_new_section ) {
