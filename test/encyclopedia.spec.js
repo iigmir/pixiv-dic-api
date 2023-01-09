@@ -48,6 +48,28 @@ const umi_content = [{
         <br>
         一転して、μ'sの楽曲PVでは<b><a href="/a/%E6%8A%95%E3%81%92%E3%82%AD%E3%83%83%E3%82%B9%E9%AD%94%E6%B5%B7%E6%9C%AA%E3%81%A1%E3%82%83%E3%82%93" gtm-class="article-body_article" gtm-id="投げキッス魔海未ちゃん">ほぼ全てのPVで投げキッスをする</a></b>など物凄い大胆。ちなみにこれは「<a href="/a/%E7%B5%A2%E7%80%AC%E7%B5%B5%E9%87%8C" gtm-class="article-body_article" gtm-id="絢瀬絵里">絵里</a>から言われた」と、ある雑誌のインタビューで答えている。が、ラブライブ!は基本的にパラレル仕様なので本来のことはわからない。
         <br>`
+    }, {
+        source: `<a href="https://www.pixiv.net/artworks/42987895" title="海未ちゃん" data-image-url="https://i.pximg.net/c/600x600/img-master/img/2014/04/20/00/20/17/42987895_p0_master1200.jpg" data-author-name="Hiten" data-author-url="http://www.pixiv.net/member.php?id=490219" data-caption="♡~(●.<)" target="_blank" class="illust" gtm-class="article-body_illust" gtm-id="42987895"><img src="https://i.pximg.net/c/260x260/img-master/img/2014/04/20/00/20/17/42987895_p0_square1200.jpg" alt="海未ちゃん"></a><div class="info" style="display: none;"><h3><a href="https://www.pixiv.net/artworks/42987895" target="_blank">海未ちゃん</a></h3>by <a href="http://www.pixiv.net/member.php?id=490219" target="_blank" gtm-class="article-bottom_illust-author" gtm-id="">Hiten</a></div>`
+    }, {
+        source: `
+        <br>
+
+        <br>
+        全メディアにおいて、<a href="/a/%E9%AB%98%E5%9D%82%E7%A9%82%E4%B9%83%E6%9E%9C" gtm-class="article-body_article" gtm-id="高坂穂乃果">高坂穂乃果</a>、<a href="/a/%E5%8D%97%E3%81%93%E3%81%A8%E3%82%8A" gtm-class="article-body_article" gtm-id="南ことり">南ことり</a>とは幼なじみである。
+        <br>
+
+        <br>
+        2011年8月5日～14日に、秋葉原の「キュアメイドカフェ」にて開催されたイベントである「ラブライブ！カフェ」の期間中に実施された「μ’ｓイメージガール投票」にて 見事1位に輝いた。キュアメイドカフェ公式サイトより、描きおろしご褒美イラストがダウンロードできる（&gt;<a class="external-link" target="_blank" rel="noopener nofollow ugc" href="http://www.curemaid.jp/?page_id=3879" gtm-class="article-body_external">こちら</a>）。なお、テレビアニメ版でのことりのバイト先が同店と設定されてしまったため、実質的にイメージガールの座を奪われてしまった。
+        <br>
+        2014年3月に<a href="/a/%E3%83%AD%E3%83%BC%E3%82%BD%E3%83%B3" gtm-class="article-body_article" gtm-id="ローソン">ローソン</a>とのコラボレーションで行われた投票「ローソンイメージガール決定戦」では見事1位に輝いた。おめでとう！
+        <br>
+
+        <br>
+        ファンからの愛称は海未ちゃん。一部では名前の漢字をそのまま読んで<a href="/a/%E3%81%86%E3%81%BF%E3%81%BF" gtm-class="article-body_article" gtm-id="うみみ">うみみ</a>とも呼ばれるが、元ネタが元ネタなのであんまりファンの前では使わないよう注意。
+        <br>
+
+        <br>
+        `
     }]
 }];
 
