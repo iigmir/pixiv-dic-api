@@ -1,0 +1,19 @@
+{
+  "name": "pixiv-dic",
+  "version": "1.0.0",
+  "description": "a simple API",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 5000"
+  },
+  "keywords": [],
+  "type": "module",
+  "author": "iigmir",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  },
+  "dependencies": {
+    "jsdom": "^21.0.0"
+  }
+}
