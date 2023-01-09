@@ -50,9 +50,11 @@ class PixivEncyclopedia {
         this.document = null;
         this.status_object = null;
     }
+    // Status
     set_status_object(entry, document) {
         this.status_object = new PageStatus(entry, document);
     }
+    // Document
     set_document(html) {
         const url = `https://dic.pixiv.net/a/${this.entry}`;
         const referrer = `https://dic.pixiv.net`;
@@ -79,6 +81,7 @@ class PixivEncyclopedia {
         };
         return new Promise( main );
     }
+    // Summary
     get_summary() {
         const main = async (resolve, reject) => {
             try {
@@ -95,9 +98,6 @@ class PixivEncyclopedia {
     set_summary(input = PixpediaSummaryInterface) {
         this.summary = input;
     }
-    get document_inited() {
-        return this.document != null;
-    }
     /**
      * @typedef {Object} PixpediaBreadcumbInterface
      * @property {String|null} name The item's name
@@ -111,10 +111,13 @@ class PixivEncyclopedia {
          * @type {PixpediaBreadcumbInterface}
          */
         const empty = [{ name: null, position: null }];
-        if( this.document_inited ) {
+        if( this.status.message === "normal" ) {
             return generate_breadcrumb( this.document );
         }
         return empty;
+    }
+    get status() {
+        return this.status_object.result;
     }
     /**
      * @typedef {Object} PixivEncyclopediaInterface
@@ -129,7 +132,7 @@ class PixivEncyclopedia {
         return {
             summary: this.summary,
             breadcrumb: this.breadcrumb,
-            status: this.status_object.result
+            status: this.status
         };
     }
 }
