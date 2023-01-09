@@ -9,7 +9,7 @@
  * @param {Element} item
  * @returns {PixpediaBreadcumbInterface}
  */
-const generate_interface = item => ({
+const generate_breadcumb_interface = item => ({
     name: item.querySelector('*[itemprop="name"]').textContent,
     position: item.querySelector('*[itemprop="position"]').content
 });
@@ -22,5 +22,5 @@ const generate_interface = item => ({
 export const GenerateBreadcrumb = (document = document) => {
     const list = document.querySelectorAll(`*[itemtype="http://schema.org/BreadcrumbList"] *[itemprop="itemListElement"]`);
     // [...list].length < 1 ? empty :
-    return [...list].map( generate_interface );
+    return [...list].map( generate_breadcumb_interface );
 };
