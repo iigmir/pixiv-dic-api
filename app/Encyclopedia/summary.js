@@ -31,7 +31,7 @@ class PixpediaSummary {
          */
         this.result = this.preview;
     }
-    ajax_result(entry = "") {
+    ajax(entry = "") {
         const main = async (resolve, reject) => {
             try {
                 const response = await GetTag(entry);

@@ -33,7 +33,7 @@ class PixivEncyclopedia {
     set_summary() {
         const main = async (resolve) => {
             const summary = new PixpediaSummary();
-            summary.ajax_result(this.entry).finally( () => {
+            summary.ajax(this.entry).finally( () => {
                 this.summary = summary.result;
                 resolve();
             });
