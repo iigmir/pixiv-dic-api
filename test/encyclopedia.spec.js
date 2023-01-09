@@ -2,6 +2,50 @@ import main from "../app/enc.js";
 import { strictEqual, deepStrictEqual } from "assert";
 
 const umi_content = [{
+    title: "",
+    contents: [{
+        source: `
+        <div class="index_title"><span>目次</span>[<a href="#" class="toggle_index">非表示</a>]</div><div class="index_body"><li class="index_level1"><a href="#h2_0">1&nbsp;プロフィールです。
+        </a></li>
+        <li class="index_level1"><a href="#h2_1">2&nbsp;人物像です。
+        </a></li>
+        <li class="index_level2"><a href="#h3_0">2.1&nbsp;原作です。
+        </a></li>
+        <li class="index_level2"><a href="#h3_1">2.2&nbsp;漫画です。
+        </a></li>
+        <li class="index_level2"><a href="#h3_2">2.3&nbsp;アニメです。
+        </a></li>
+        <li class="index_level2"><a href="#h3_3">2.4&nbsp;SIDです。
+        </a></li>
+        <li class="index_level2"><a href="#h3_4">2.5&nbsp;スクフェスです。
+        </a></li>
+        <li class="index_level2"><a href="#h3_5">2.6&nbsp;スクスタです。
+        </a></li>
+        <li class="index_level1"><a href="#h2_2">3&nbsp;楽曲です。
+        </a></li>
+        <li class="index_level2"><a href="#h3_6">3.1&nbsp;総選挙結果とポジションです。
+        </a></li>
+        <li class="index_level1"><a href="#h2_3">4&nbsp;スクフェスR一覧です。
+        </a></li>
+        <li class="index_level1"><a href="#h2_4">5&nbsp;関連イラストです。
+        </a></li>
+        <li class="index_level1"><a href="#h2_5">6&nbsp;関連タグです。
+        </a></li>
+        <li class="index_level1"><a href="#h2_6">7&nbsp;人称・口調・呼称です。（スクスタ版準拠）
+        </a></li>
+        <li class="index_level2"><a href="#h3_7">7.1&nbsp;スクスタメンバーの呼称と変遷です。
+        </a></li>
+        </div>`
+    }, {
+        source: `<b>「それが<a href="/a/%E9%AB%98%E5%9D%82%E7%A9%82%E4%B9%83%E6%9E%9C" gtm-class="article-body_article" gtm-id="高坂穂乃果">穂乃果</a>の凄い所なんです。わたしも<a href="/a/%E5%8D%97%E3%81%93%E3%81%A8%E3%82%8A" gtm-class="article-body_article" gtm-id="南ことり">ことり</a>も、<a href="/a/%CE%BC%27s" gtm-class="article-body_article" gtm-id="μ's">μ's</a>のみんなもそう思っています」</b>
+        <br>
+
+        <br>
+        `
+    }, {
+        source: "<div id=\"div-gpt-ad-1666069065432-0\" style=\"min-width: 300px; min-height: 90px;\"><script id=\"d_toparticle_flux\" type=\"none\" src=\"https://pixon.ads-pixiv.net/show?zone_id=d_toparticle&amp;format=js&amp;ng=w&amp;num=a4c2487e\"></script><script id=\"d_toparticle_flux_cmd\" type=\"none\">const adFrameTopArticle = document.getElementById(\"div-gpt-ad-1666069065432-0\");const resizeObserverTopArticle = new ResizeObserver(() => {const ad = document.getElementById(\"google_ads_iframe_/21259798/d_toparticle_flux_0\");if (ad && ad.clientWidth > 624) {const scale = 624 / ad.clientWidth;ad.style.transformOrigin = \"top center\";ad.style.transform = \"scale(\" + scale + \")\";adFrameTopArticle.style.height = ad.clientHeight*scale + \"px\";}});resizeObserverTopArticle.observe(adFrameTopArticle);</script></div>"
+    }]
+},{
     title: "プロフィールです。",
     contents: [{
         source: "<tbody><tr><th>名前</th><td>園田海未</td></tr><tr><th>英字表記</th><td>UMI SONODA</td></tr><tr><th>読み方</th><td>うみ　そのだ</td></tr><tr><th>学年</th><td>2年</td></tr><tr><th>年齢</th><td>16歳</td></tr><tr><th>身長</th><td>159cm（シリーズ15位タイ）</td></tr><tr><th>血液型</th><td>A型</td></tr><tr><th>誕生日</th><td><a href=\"/a/3%E6%9C%8815%E6%97%A5\" gtm-class=\"article-body_article\" gtm-id=\"3月15日\">3月15日</a></td></tr><tr><th>星座</th><td><a href=\"/a/%E9%AD%9A%E5%BA%A7\" gtm-class=\"article-body_article\" gtm-id=\"魚座\">魚座</a></td></tr><tr><th>3size</th><td>B76/W58/H80</td></tr><tr><th>好きな食べ物</th><td>穂乃果の家のまんじゅう</td></tr><tr><th>嫌いな食べ物</th><td><a href=\"/a/%E7%82%AD%E9%85%B8%E9%A3%B2%E6%96%99\" gtm-class=\"article-body_article\" gtm-id=\"炭酸飲料\">炭酸飲料</a></td></tr><tr><th>イメージカラー</th><td><a href=\"/a/%E9%9D%92\" gtm-class=\"article-body_article\" gtm-id=\"青\">青</a> (<a href=\"/a/%E8%97%8D%E8%89%B2\" gtm-class=\"article-body_article\" gtm-id=\"藍色\">藍色</a>)</td></tr><tr><th>所属ユニット</th><td><a href=\"/a/lily_white\" gtm-class=\"article-body_article\" gtm-id=\"lily_white\">lily white</a></td></tr><tr><th>一人称</th><td>わたし</td></tr><tr><th>CV.</th><td><a href=\"/a/%E4%B8%89%E6%A3%AE%E3%81%99%E3%81%9A%E3%81%93\" gtm-class=\"article-body_article\" gtm-id=\"三森すずこ\">三森すずこ</a></td></tr></tbody>"
