@@ -18,7 +18,7 @@ class PixivEncyclopedia {
         this.status_object = new PageStatus(entry, document);
     }
     // Document
-    ajax_document() {
+    set_document() {
         const main = async (resolve) => {
             const object = new PageSourceDOM();
             object.ajax(this.entry).finally( () => {
@@ -69,7 +69,7 @@ class PixivEncyclopedia {
         return new Promise( (resolve, reject) => {
             const actions = Promise.all([
                 this.set_summary(),
-                this.ajax_document(),
+                this.set_document(),
             ]);
             actions.then( () => {
                 resolve();

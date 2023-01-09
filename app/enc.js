@@ -6,8 +6,7 @@ const main = async (entry = "") => {
         await parser.start();
         return parser.result;
     } catch (error) {
-        console.error(error);
-        throw new Error("Request failed");
+        throw new Error(error);
     }
 };
 
