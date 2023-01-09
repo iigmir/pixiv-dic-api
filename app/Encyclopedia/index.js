@@ -92,7 +92,8 @@ class PixivEncyclopedia {
         return {
             summary: this.summary,
             breadcrumb: this.breadcrumb,
-            status: this.status
+            status: this.status,
+            content: [],
         };
     }
 }
