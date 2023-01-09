@@ -37,7 +37,7 @@ class PixivEncyclopedia {
         const main = async (resolve, reject) => {
             try {
                 const response = await GetEncyclopediaEntry(this.entry);
-                this.set_document(response.body);
+                this.set_document(response);
                 resolve(response);
             } catch (error) {
                 this.set_document("");

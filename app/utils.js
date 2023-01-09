@@ -20,7 +20,7 @@ const generate_interface = item => ({
  * @returns {PixpediaBreadcumbInterface[]}
  */
 export const GenerateBreadcrumb = (document = document) => {
-    const list = document.querySelectorAll('*[itemtype="http://schema.org/BreadcrumbList"] *[itemprop="itemListElement"]');
+    const list = document.querySelectorAll(`*[itemtype="http://schema.org/BreadcrumbList"] *[itemprop="itemListElement"]`);
     // [...list].length < 1 ? empty :
     return [...list].map( generate_interface );
 };
