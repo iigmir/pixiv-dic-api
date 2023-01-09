@@ -1,4 +1,4 @@
-import main from "../app/encyclopedia.js";
+import main from "../app/enc.js";
 import { strictEqual, deepStrictEqual } from "assert";
 
 describe("Parser module", () => {
