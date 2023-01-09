@@ -104,17 +104,16 @@ class PixpediaSummary {
     /**
      * @param {String} entry
      */
-    constructor(entry = "") {
-        this.entry = entry;
+    constructor() {
         /**
          * @type {PixpediaSummaryInterface}
          */
         this.result = this.preview;
     }
-    ajax_result() {
+    ajax_result(entry = "") {
         const main = async (resolve, reject) => {
             try {
-                const response = await GetTag(this.entry);
+                const response = await GetTag(entry);
                 this.set_result(response.body.pixpedia);
                 resolve(response);
             } catch (error) {
@@ -158,8 +157,8 @@ class PixivEncyclopedia {
     // Summary
     set_summary() {
         const main = async (resolve) => {
-            const summary = new PixpediaSummary(this.entry);
-            summary.ajax_result().finally( () => {
+            const summary = new PixpediaSummary();
+            summary.ajax_result(this.entry).finally( () => {
                 this.summary = summary.result;
                 resolve();
             });
