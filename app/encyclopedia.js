@@ -148,6 +148,23 @@ class PixivEncyclopedia {
     get status() {
         return this.status_object.result;
     }
+    // Public methods
+    /**
+     * The main function. AJAXes start here.
+     */
+    async start() {
+        return new Promise( (resolve, reject) => {
+            const actions = Promise.all([
+                this.set_summary(),
+                this.ajax_document(),
+            ]);
+            actions.then( () => {
+                resolve();
+            }).catch( (error) => {
+                reject(error);
+            });
+        });
+    }
     /**
      * The interface.
      * @returns {PixivEncyclopediaInterface}
@@ -170,8 +187,7 @@ class PixivEncyclopedia {
 const main = async (entry = "") => {
     const parser = new PixivEncyclopedia(entry);
     try {
-        await parser.set_summary();
-        await parser.ajax_document();
+        await parser.start();
         return parser.result;
     } catch (error) {
         console.error(error);
