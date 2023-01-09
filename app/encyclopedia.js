@@ -113,14 +113,14 @@ class PixivEncyclopedia {
         this.summary = input;
     }
     /**
-     * @typedef {Object} PixpediaBreadcumbInterface
-     * @property {String|null} name The item's name
-     * @property {String|null} position THe item's position
-     */
-    /**
      * @returns {PixpediaBreadcumbInterface[]}
      */
     get breadcrumb() {
+        /**
+         * @typedef {Object} PixpediaBreadcumbInterface
+         * @property {String|null} name The item's name
+         * @property {String|null} position THe item's position
+         */
         /**
          * @type {PixpediaBreadcumbInterface}
          */
