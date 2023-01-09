@@ -2,6 +2,7 @@ import { GenerateBreadcrumb as generate_breadcrumb } from "./breadcrumb.js";
 import PageSourceDOM from "./dom.js";
 import PageStatus from "./status.js";
 import PixpediaSummary from "./summary.js";
+import PixpediaContentParser from "./content.js";
 
 /**
  * The encyclopedia object.
@@ -9,9 +10,10 @@ import PixpediaSummary from "./summary.js";
 class PixivEncyclopedia {
     constructor(entry = "") {
         this.entry = entry;
-        this.summary = {};
+        this.summary = null;
         this.document = null;
         this.status_object = null;
+        this.content = null;
     }
     // Status
     set_status_object(entry, document) {
@@ -37,6 +39,16 @@ class PixivEncyclopedia {
                 this.summary = summary.result;
                 resolve();
             });
+        };
+        return new Promise( main );
+    }
+    // Content
+    set_content() {
+        const main = async (resolve) => {
+            const content = new PixpediaContentParser(this.document);
+            content.set_contents();
+            this.content = content.result;
+            resolve();
         };
         return new Promise( main );
     }
@@ -70,6 +82,7 @@ class PixivEncyclopedia {
             const actions = Promise.all([
                 this.set_summary(),
                 this.set_document(),
+                this.set_content(),
             ]);
             actions.then( () => {
                 resolve();
@@ -88,12 +101,13 @@ class PixivEncyclopedia {
          * @property {PixpediaSummaryInterface} summary The summary.
          * @property {PixpediaBreadcumbInterface} breadcrumb The breadcrumb.
          * @property {PageStatusInterface} status The status.
+         * @property {PixpediaContentInterface} content The content.
          */
         return {
             summary: this.summary,
             breadcrumb: this.breadcrumb,
             status: this.status,
-            content: [],
+            content: this.content,
         };
     }
 }
