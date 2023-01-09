@@ -15,6 +15,9 @@ const PixpediaSummaryInterface = {
     "tag": ""
 };
 
+/**
+ * Page status
+ */
 class PageStatus {
     constructor(entry = "", document = null) {
         this.entry = entry;
@@ -36,13 +39,24 @@ class PageStatus {
         }
         return "normal";
     }
+    /**
+     * Result
+     * @return {PageStatusInterface} Of course.
+     */
     get result() {
+        /**
+         * @typedef {Object} PageStatusInterface
+         * @property {String} message The message.
+         */
         return {
             message: this.message
         };
     }
 }
 
+/**
+ * The encyclopedia object.
+ */
 class PixivEncyclopedia {
     constructor(entry = "") {
         this.entry = entry;
@@ -120,15 +134,16 @@ class PixivEncyclopedia {
         return this.status_object.result;
     }
     /**
-     * @typedef {Object} PixivEncyclopediaInterface
-     * @property {PixpediaSummaryInterface} summary The summary.
-     * @property {PixpediaBreadcumbInterface} breadcrumb The breadcrumb.
-     */
-    /**
      * The interface.
      * @returns {PixivEncyclopediaInterface}
      */
     get result() {
+        /**
+         * @typedef {Object} PixivEncyclopediaInterface
+         * @property {PixpediaSummaryInterface} summary The summary.
+         * @property {PixpediaBreadcumbInterface} breadcrumb The breadcrumb.
+         * @property {PageStatusInterface} status The status.
+         */
         return {
             summary: this.summary,
             breadcrumb: this.breadcrumb,
