@@ -20,9 +20,9 @@ class PixivEncyclopedia {
     // Document
     set_document() {
         const main = async (resolve) => {
-            const object = new PageSourceDOM();
-            object.ajax(this.entry).finally( () => {
-                this.document = object.result;
+            const dom = new PageSourceDOM();
+            dom.ajax(this.entry).finally( () => {
+                this.document = dom.result;
                 this.set_status_object(this.entry, this.document);
                 resolve();
             });
