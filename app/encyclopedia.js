@@ -3,19 +3,6 @@ import { GenerateBreadcrumb as generate_breadcrumb } from "./utils.js";
 import { JSDOM } from "jsdom";
 
 /**
- * @interface
- */
-const PixpediaSummaryInterface = {
-    "abstract": "",
-    "image": "",
-    "id": "73684021",
-    "yomigana": "",
-    "parentTag": "",
-    "siblingsTags": [""],
-    "tag": ""
-};
-
-/**
  * Page status
  */
 class PageStatus {
@@ -54,13 +41,47 @@ class PageStatus {
     }
 }
 
+class PixpediaSummary {
+    static get preview() {
+        return  {
+            "abstract": "",
+            "image": "",
+            "id": "",
+            "yomigana": "",
+            "parentTag": "",
+            "siblingsTags": [""],
+            "tag": ""
+        };
+    }
+    constructor(entry = "") {
+        this.entry = entry;
+        this.result = this.preview;
+    }
+    ajax_result() {
+        const main = async (resolve, reject) => {
+            try {
+                const response = await GetTag(this.entry);
+                this.set_result(response.body.pixpedia);
+                resolve(response);
+            } catch (error) {
+                this.set_result(this.preview);
+                reject(error);
+            }
+        };
+        return new Promise( main );
+    }
+    set_result(input = {}) {
+        this.result = input;
+    }
+}
+
 /**
  * The encyclopedia object.
  */
 class PixivEncyclopedia {
     constructor(entry = "") {
         this.entry = entry;
-        this.summary = PixpediaSummaryInterface;
+        this.summary = {};
         this.document = null;
         this.status_object = null;
     }
@@ -96,21 +117,15 @@ class PixivEncyclopedia {
         this.set_status_object(this.entry, this.document);
     }
     // Summary
-    ajax_summary() {
-        const main = async (resolve, reject) => {
-            try {
-                const response = await GetTag(this.entry);
-                this.set_summary(response.body.pixpedia);
-                resolve(response);
-            } catch (error) {
-                this.set_summary(PixpediaSummaryInterface);
-                reject(error);
-            }
+    set_summary() {
+        const main = async (resolve) => {
+            const summary = new PixpediaSummary(this.entry);
+            summary.ajax_result().finally( () => {
+                this.summary = summary.result;
+                resolve();
+            });
         };
         return new Promise( main );
-    }
-    set_summary(input = PixpediaSummaryInterface) {
-        this.summary = input;
     }
     /**
      * @returns {PixpediaBreadcumbInterface[]}
@@ -155,7 +170,7 @@ class PixivEncyclopedia {
 const main = async (entry = "") => {
     const parser = new PixivEncyclopedia(entry);
     try {
-        await parser.ajax_summary();
+        await parser.set_summary();
         await parser.ajax_document();
         return parser.result;
     } catch (error) {
