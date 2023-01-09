@@ -44,13 +44,10 @@ class PixivEncyclopedia {
     }
     // Content
     set_content() {
-        const main = async (resolve) => {
-            const content = new PixpediaContentParser(this.document);
-            content.set_contents();
-            this.content = content.result;
-            resolve();
-        };
-        return new Promise( main );
+        const content = new PixpediaContentParser(this.document);
+        content.set_contents();
+        this.content = content.result;
+        return Promise.resolve();
     }
     /**
      * @returns {PixpediaBreadcumbInterface[]}
