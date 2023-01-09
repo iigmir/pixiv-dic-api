@@ -42,8 +42,15 @@ class PageStatus {
 }
 
 class PixpediaSummary {
+    /**
+     * @type {PixpediaSummaryInterface}
+     */
     static get preview() {
-        return  {
+        /**
+         * @typedef {Object} PixpediaSummaryInterface
+         * @property {String} abstract A simple text to introduce the subject.
+         */
+        return {
             "abstract": "",
             "image": "",
             "id": "",
@@ -53,8 +60,14 @@ class PixpediaSummary {
             "tag": ""
         };
     }
+    /**
+     * @param {String} entry
+     */
     constructor(entry = "") {
         this.entry = entry;
+        /**
+         * @type {PixpediaSummaryInterface}
+         */
         this.result = this.preview;
     }
     ajax_result() {
