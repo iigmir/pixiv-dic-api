@@ -19,8 +19,9 @@ class PixpediaContentParser {
         };
         // List
         // console.log(this.articles_source.length);
-        this.articles_source.forEach( (dom = Element) => {
+        this.articles_source.forEach( (dom = Element, index = 0, articles = []) => {
             const is_new_section = dom.nodeName === "H2";
+            const is_last_section = index + 1 === articles.length;
             if( is_new_section ) {
                 result.push( section );
                 section = { title: "Preface", contents: [] };
@@ -29,6 +30,9 @@ class PixpediaContentParser {
                 section.contents.push({
                     source: dom.outerHTML
                 });
+            }
+            if( is_last_section ) {
+                result.push( section );
             }
         });
         this.contents = result;
