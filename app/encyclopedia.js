@@ -15,11 +15,43 @@ const PixpediaSummaryInterface = {
     "tag": ""
 };
 
+class PageStatus {
+    constructor(entry = "", document = null) {
+        this.entry = entry;
+        this.document = document;
+    }
+    get uninitialised() {
+        return this.document == null;
+    }
+    /**
+     * @returns {String} Status texts
+     */
+    get message() {
+        if( this.uninitialised ) {
+            return "document-uninitialised";
+        }
+        const page_description = this.document.querySelector('meta[property="og:description" ]').content;
+        if( /メンテナンス/.test( page_description ) ) {
+            return "under-maintenance";
+        }
+        return "normal";
+    }
+    get result() {
+        return {
+            message: this.message
+        };
+    }
+}
+
 class PixivEncyclopedia {
     constructor(entry = "") {
         this.entry = entry;
         this.summary = PixpediaSummaryInterface;
         this.document = null;
+        this.status_object = null;
+    }
+    set_status_object(entry, document) {
+        this.status_object = new PageStatus(entry, document);
     }
     set_document(html) {
         const url = `https://dic.pixiv.net/a/${this.entry}`;
@@ -32,6 +64,7 @@ class PixivEncyclopedia {
         };
         const { document } = new JSDOM( html, options ).window;
         this.document = document;
+        this.set_status_object(this.entry, this.document);
     }
     get_document() {
         const main = async (resolve, reject) => {
@@ -96,6 +129,7 @@ class PixivEncyclopedia {
         return {
             summary: this.summary,
             breadcrumb: this.breadcrumb,
+            status: this.status_object.result
         };
     }
 }

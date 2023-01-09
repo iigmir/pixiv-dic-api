@@ -20,8 +20,8 @@ describe("Parser module", () => {
             };
             // Functions
             const response = await main(vaild_input);
-            const breadcrumb = response.breadcrumb[0];
-            deepStrictEqual( breadcrumb, expected );
+            const breadcrumb = response.breadcrumb;
+            deepStrictEqual( breadcrumb[0], expected );
         });
     });
 });
