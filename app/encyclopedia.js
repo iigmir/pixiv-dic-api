@@ -55,6 +55,19 @@ class PixivEncyclopedia {
         this.status_object = new PageStatus(entry, document);
     }
     // Document
+    ajax_document() {
+        const main = async (resolve, reject) => {
+            try {
+                const response = await GetEncyclopediaEntry(this.entry);
+                this.set_document(response);
+                resolve(response);
+            } catch (error) {
+                this.set_document("");
+                reject(error);
+            }
+        };
+        return new Promise( main );
+    }
     set_document(html) {
         const url = `https://dic.pixiv.net/a/${this.entry}`;
         const referrer = `https://dic.pixiv.net`;
@@ -68,21 +81,8 @@ class PixivEncyclopedia {
         this.document = document;
         this.set_status_object(this.entry, this.document);
     }
-    get_document() {
-        const main = async (resolve, reject) => {
-            try {
-                const response = await GetEncyclopediaEntry(this.entry);
-                this.set_document(response);
-                resolve(response);
-            } catch (error) {
-                this.set_document("");
-                reject(error);
-            }
-        };
-        return new Promise( main );
-    }
     // Summary
-    get_summary() {
+    ajax_summary() {
         const main = async (resolve, reject) => {
             try {
                 const response = await GetTag(this.entry);
@@ -140,8 +140,8 @@ class PixivEncyclopedia {
 const main = async (entry = "") => {
     const parser = new PixivEncyclopedia(entry);
     try {
-        await parser.get_summary();
-        await parser.get_document();
+        await parser.ajax_summary();
+        await parser.ajax_document();
         return parser.result;
     } catch (error) {
         console.error(error);
