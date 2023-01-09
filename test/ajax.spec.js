@@ -1,12 +1,12 @@
 import { ExampleRequest } from "../api/example.js";
 import { GetTag, GetEncyclopediaEntry } from "../api/pixiv.js";
-import { equal } from "assert";
+import { strictEqual } from "assert";
 
 describe("AJAX module", () => {
     describe("ExampleRequest", () => {
         it("should success", () => {
             ExampleRequest().then(user => {
-                equal(typeof (user[0].id), "number");
+                strictEqual(typeof (user[0].id), "number");
             });
         });
     });
@@ -18,7 +18,7 @@ describe("AJAX module", () => {
             // Functions
             const response = await GetTag(input);
             const abstract = response.body.pixpedia.abstract;
-            equal( abstract, expected );
+            strictEqual( abstract, expected );
         });
         it("should return invaild response when there's no entry", async () => {
             // Infos
@@ -27,7 +27,7 @@ describe("AJAX module", () => {
             // Functions
             const response = await GetTag(input);
             const abstract = response.body.pixpedia.abstract;
-            equal( abstract, expected );
+            strictEqual( abstract, expected );
         });
     });
     describe("GetEncyclopediaEntry", () => {
@@ -38,7 +38,7 @@ describe("AJAX module", () => {
             // Functions
             const response = await GetEncyclopediaEntry(input);
             const result = /<!DOCTYPE html>/.test( response );
-            equal( result, expected );
+            strictEqual( result, expected );
         });
     });
 });

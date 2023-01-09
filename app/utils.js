@@ -1,7 +1,7 @@
 /**
  * @typedef {Object} PixpediaBreadcumbInterface
  * @property {String|null} name The item's name
- * @property {String|null} position THe item's position
+ * @property {Number|null} position THe item's position number
  */
 
 /**
@@ -11,7 +11,7 @@
  */
 const generate_breadcumb_interface = item => ({
     name: item.querySelector('*[itemprop="name"]').textContent,
-    position: item.querySelector('*[itemprop="position"]').content
+    position: parseInt(item.querySelector('*[itemprop="position"]').content, 10)
 });
 
 /**
@@ -21,6 +21,5 @@ const generate_breadcumb_interface = item => ({
  */
 export const GenerateBreadcrumb = (document = document) => {
     const list = document.querySelectorAll(`*[itemtype="http://schema.org/BreadcrumbList"] *[itemprop="itemListElement"]`);
-    // [...list].length < 1 ? empty :
     return [...list].map( generate_breadcumb_interface );
 };

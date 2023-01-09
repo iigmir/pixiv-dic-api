@@ -1,6 +1,5 @@
 import main from "../app/encyclopedia.js";
-import { equal } from "assert";
-
+import { strictEqual, deepStrictEqual } from "assert";
 
 describe("Parser module", () => {
     describe("when the entry is vaild", () => {
@@ -11,7 +10,7 @@ describe("Parser module", () => {
             // Functions
             const response = await main(vaild_input);
             const abstract = response.summary.abstract;
-            equal( abstract, expected );
+            strictEqual( abstract, expected );
         });
         it("should return a breadcrumb", async () => {
             // Infos
@@ -21,11 +20,9 @@ describe("Parser module", () => {
             };
             // Functions
             const response = await main(vaild_input);
-            const breadcrumb = response.breadcrumb;
-            equal( breadcrumb, expected );
+            const breadcrumb = response.breadcrumb[0];
+            deepStrictEqual( breadcrumb, expected );
         });
     });
-
-    // ピクシブ百科事典
 });
 
