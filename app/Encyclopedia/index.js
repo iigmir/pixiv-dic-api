@@ -1,3 +1,8 @@
+import { GenerateBreadcrumb as generate_breadcrumb } from "./Encyclopedia/breadcrumb.js";
+import PageSourceDOM from "./Encyclopedia/dom.js";
+import PageStatus from "./Encyclopedia/status.js";
+import PixpediaSummary from "./Encyclopedia/summary.js";
+
 /**
  * The encyclopedia object.
  */
@@ -92,15 +97,4 @@ class PixivEncyclopedia {
     }
 }
 
-const main = async (entry = "") => {
-    const parser = new PixivEncyclopedia(entry);
-    try {
-        await parser.start();
-        return parser.result;
-    } catch (error) {
-        console.error(error);
-        throw new Error("Request failed");
-    }
-};
-
-export default main;
+export default PixivEncyclopedia;
