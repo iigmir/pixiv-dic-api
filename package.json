@@ -4,7 +4,8 @@
   "description": "a simple API",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 5000"
+    "test": "mocha --timeout 5000",
+    "io": "node io.js"
   },
   "keywords": [],
   "type": "module",
