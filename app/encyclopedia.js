@@ -1,4 +1,5 @@
 import { GetTag, GetEncyclopediaEntry } from "../api/pixiv.js";
+import { GenerateBreadcrumb as generate_breadcrumb } from "./utils.js";
 import { JSDOM } from "jsdom";
 
 /**
@@ -78,19 +79,7 @@ class PixivEncyclopedia {
          */
         const empty = [{ name: null, position: null }];
         if( this.document_inited ) {
-            const document = this.document;
-            const list = document.querySelectorAll('*[itemtype="http://schema.org/BreadcrumbList"] *[itemprop="itemListElement"]');
-            /**
-             * Get a breadcrumb interface
-             * @param {Element} item
-             * @returns {PixpediaBreadcumbInterface}
-             */
-            const generate_interface = item => ({
-                name: item.querySelector('*[itemprop="name"]').textContent,
-                position: item.querySelector('*[itemprop="position"]').content
-            });
-            // [...list].length < 1 ? empty :
-            return [...list].map( generate_interface );
+            return generate_breadcrumb( this.document );
         }
         return empty;
     }
