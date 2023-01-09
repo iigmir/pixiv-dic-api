@@ -26,7 +26,7 @@ class PixpediaContentParser {
                 section.title = dom.textContent;
             } else {
                 section.contents.push({
-                    source: dom.innerHTML
+                    source: dom.outerHTML
                 });
             }
         });
