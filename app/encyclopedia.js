@@ -41,6 +41,47 @@ class PageStatus {
     }
 }
 
+/**
+ * DOM
+ */
+class PageSourceDOM {
+    constructor() {
+        this.document = null;
+    }
+    ajax(entry = "") {
+        const main = async (resolve, reject) => {
+            try {
+                const response = await GetEncyclopediaEntry(entry);
+                this.set_document(response, entry);
+                resolve(this.result);
+            } catch (error) {
+                this.set_document("", entry);
+                console.error( error );
+                reject(error);
+            }
+        };
+        return new Promise( main );
+    }
+    set_document(html, entry) {
+        const url = `https://dic.pixiv.net/a/${entry}`;
+        const referrer = `https://dic.pixiv.net`;
+        const options = {
+            url: url,
+            referrer: referrer,
+            contentType: "text/html",
+            includeNodeLocations: true,
+        };
+        const { document } = new JSDOM( html, options ).window;
+        this.document = document;
+    }
+    get result() {
+        return this.document;
+    }
+}
+
+/**
+ * Summary
+ */
 class PixpediaSummary {
     /**
      * @type {PixpediaSummaryInterface}
@@ -104,30 +145,15 @@ class PixivEncyclopedia {
     }
     // Document
     ajax_document() {
-        const main = async (resolve, reject) => {
-            try {
-                const response = await GetEncyclopediaEntry(this.entry);
-                this.set_document(response);
-                resolve(response);
-            } catch (error) {
-                this.set_document("");
-                reject(error);
-            }
+        const main = async (resolve) => {
+            const object = new PageSourceDOM();
+            object.ajax(this.entry).finally( () => {
+                this.document = object.result;
+                this.set_status_object(this.entry, this.document);
+                resolve();
+            });
         };
         return new Promise( main );
-    }
-    set_document(html) {
-        const url = `https://dic.pixiv.net/a/${this.entry}`;
-        const referrer = `https://dic.pixiv.net`;
-        const options = {
-            url: url,
-            referrer: referrer,
-            contentType: "text/html",
-            includeNodeLocations: true,
-        };
-        const { document } = new JSDOM( html, options ).window;
-        this.document = document;
-        this.set_status_object(this.entry, this.document);
     }
     // Summary
     set_summary() {
