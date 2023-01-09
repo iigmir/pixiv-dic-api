@@ -11,6 +11,7 @@ class PixpediaContentParser {
      * Render contents
      */
     set_contents() {
+        // debugger;
         // States
         let result = [];
         let section = {

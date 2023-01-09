@@ -1,5 +1,5 @@
 import main from "../app/enc.js";
-import { strictEqual, deepStrictEqual } from "assert";
+import { strictEqual, deepStrictEqual, notStrictEqual } from "assert";
 
 const umi_content = [{
     title: "",
@@ -146,6 +146,18 @@ describe("Parser module", () => {
             const response = await main(vaild_input);
             const content = response.content;
             strictEqual( content.length > 0, true );
+        });
+    });
+    describe("when somnething's wrong", () => {
+        const vaild_input = "園田海未";
+        it("should not throw expection", async () => {
+            // Functions
+            const response = await main(vaild_input);
+            if( response.status.message !== "normal" ) {
+                //
+                strictEqual( response.content, null );
+            }
+            notStrictEqual( 2 + 2, 5 );
         });
     });
 });

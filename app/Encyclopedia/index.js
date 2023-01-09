@@ -79,9 +79,9 @@ class PixivEncyclopedia {
             const actions = Promise.all([
                 this.set_summary(),
                 this.set_document(),
-                this.set_content(),
             ]);
             actions.then( () => {
+                this.set_content();
                 resolve();
             }).catch( (error) => {
                 reject(error);
@@ -100,6 +100,14 @@ class PixivEncyclopedia {
          * @property {PageStatusInterface} status The status.
          * @property {PixpediaContentInterface} content The content.
          */
+        if( this.status.message !== "normal" ) {
+            return {
+                summary: null,
+                breadcrumb: null,
+                status: this.status,
+                content: null,
+            };
+        }
         return {
             summary: this.summary,
             breadcrumb: this.breadcrumb,
