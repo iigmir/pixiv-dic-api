@@ -1,6 +1,9 @@
 import { GetTag, GetEncyclopediaEntry } from "../api/pixiv.js";
 import { JSDOM } from "jsdom";
 
+/**
+ * @interface
+ */
 const PixpediaSummaryInterface = {
     "abstract": "",
     "image": "",
@@ -56,32 +59,48 @@ class PixivEncyclopedia {
         return new Promise( main );
     }
     set_summary(input = PixpediaSummaryInterface) {
-        // console.log(input);
         this.summary = input;
     }
     get document_inited() {
         return this.document != null;
     }
+    /**
+     * @typedef {Object} PixpediaBreadcumbInterface
+     * @property {String|null} name The item's name
+     * @property {String|null} position THe item's position
+     */
+    /**
+     * @returns {PixpediaBreadcumbInterface[]}
+     */
     get breadcrumb() {
+        /**
+         * @type {PixpediaBreadcumbInterface}
+         */
         const empty = [{ name: null, position: null }];
         if( this.document_inited ) {
             const document = this.document;
             const list = document.querySelectorAll('*[itemtype="http://schema.org/BreadcrumbList"] *[itemprop="itemListElement"]');
+            /**
+             * Get a breadcrumb interface
+             * @param {Element} item
+             * @returns {PixpediaBreadcumbInterface}
+             */
             const generate_interface = item => ({
                 name: item.querySelector('*[itemprop="name"]').textContent,
                 position: item.querySelector('*[itemprop="position"]').content
             });
-            return [...list].length < 1 ? empty : [...list].map( generate_interface );
+            // [...list].length < 1 ? empty :
+            return [...list].map( generate_interface );
         }
         return empty;
     }
     /**
-     * @typedef {PixivEncyclopediaInterface}
-     * @type {PixpediaSummaryInterface} summary
+     * @typedef {Object} PixivEncyclopediaInterface
+     * @property {PixpediaSummaryInterface} summary The summary.
+     * @property {PixpediaBreadcumbInterface} breadcrumb The breadcrumb.
      */
     /**
      * The interface.
-     * @returns {Object} result
      * @returns {PixivEncyclopediaInterface}
      */
     get result() {
