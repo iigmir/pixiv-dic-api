@@ -1,18 +1,14 @@
-class PixpediaContentParser {
-    constructor(document = Document) {
-        this.document = document;
-        this.contents = [];
+class PixpediaContentItems {
+    dom = null
+    data = []
+    interface = {
+        title: "Preface",
+        contents: []
     }
-    get articles_source() {
-        const article = this.document.querySelector("#article-body");
-        const result = article == null ? [] : [...article.children];
-        return result;
+    constructor(dom = [Element]) {
+        this.dom = dom;
     }
-    /**
-     * Render contents
-     */
-    set_contents() {
-        // States
+    get ary() {
         let result = [];
         let section = {
             title: "Preface",
@@ -36,10 +32,27 @@ class PixpediaContentParser {
                 result.push(section);
             }
         };
-        // List
-        // console.log(this.articles_source.length);
-        this.articles_source.forEach( action );
-        this.contents = result;
+        this.dom.forEach( action );
+        return result;
+    }
+}
+
+class PixpediaContentParser {
+    constructor(document = Document) {
+        this.document = document;
+        this.contents = [];
+    }
+    get articles_source() {
+        const article = this.document.querySelector("#article-body");
+        const result = article == null ? [] : [...article.children];
+        return result;
+    }
+    /**
+     * Render contents
+     */
+    set_contents() {
+        const p = new PixpediaContentItems( this.articles_source );
+        this.contents = p.ary;
     }
     get result() {
         return this.contents;
