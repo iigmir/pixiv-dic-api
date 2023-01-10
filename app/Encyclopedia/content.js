@@ -1,10 +1,5 @@
 class PixpediaContentItems {
     dom = null
-    data = []
-    interface = {
-        title: "Preface",
-        contents: []
-    }
     constructor(dom = [Element]) {
         this.dom = dom;
     }
@@ -24,9 +19,13 @@ class PixpediaContentItems {
                     contents: []
                 };
             } else {
-                section.contents.push({
+                let int = {
                     source: dom.outerHTML.trim()
-                });
+                };
+                section = {
+                    title: section.title,
+                    contents: [...section.contents, int]
+                };
             }
             if (is_last_section) {
                 result.push(section);
@@ -54,6 +53,9 @@ class PixpediaContentParser {
         const p = new PixpediaContentItems( this.articles_source );
         this.contents = p.ary;
     }
+    /**
+     * The interface.
+     */
     get result() {
         return this.contents;
     }
