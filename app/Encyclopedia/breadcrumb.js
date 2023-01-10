@@ -23,3 +23,14 @@ export const GenerateBreadcrumb = (document = document) => {
     const list = document.querySelectorAll(`*[itemtype="http://schema.org/BreadcrumbList"] *[itemprop="itemListElement"]`);
     return [...list].map( generate_breadcumb_interface );
 };
+
+export const main = (status = { message: "document-uninitialised" }, document = Document) => {
+    /**
+     * @type {PixpediaBreadcumbInterface}
+     */
+    const empty = [{ name: null, position: null }];
+    if( status.message === "normal" ) {
+        return GenerateBreadcrumb( document );
+    }
+    return empty;
+};

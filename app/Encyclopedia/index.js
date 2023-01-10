@@ -1,4 +1,4 @@
-import { GenerateBreadcrumb as generate_breadcrumb } from "./breadcrumb.js";
+import { main as generate_breadcrumb } from "./breadcrumb.js";
 import PageSourceDOM from "./dom.js";
 import PageStatus from "./status.js";
 import PixpediaSummary from "./summary.js";
@@ -53,19 +53,7 @@ class PixivEncyclopedia {
      * @returns {PixpediaBreadcumbInterface[]}
      */
     get breadcrumb() {
-        /**
-         * @typedef {Object} PixpediaBreadcumbInterface
-         * @property {String|null} name The item's name
-         * @property {String|null} position THe item's position
-         */
-        /**
-         * @type {PixpediaBreadcumbInterface}
-         */
-        const empty = [{ name: null, position: null }];
-        if( this.status.message === "normal" ) {
-            return generate_breadcrumb( this.document );
-        }
-        return empty;
+        return generate_breadcrumb( this.status, this.document );
     }
     get status() {
         return this.status_object.result;
