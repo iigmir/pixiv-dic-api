@@ -72,7 +72,7 @@ class PixpediaContentItems {
         const action = (dom = Element) => {
             // States
             const is_new_title = dom.nodeName === "H2";
-            const new_content = new ContentInterface(dom);
+            const new_content = new ContentInterface( dom.outerHTML.trim() );
             // Actions
             if (is_new_title) {
                 sections.push( current_section.result );
