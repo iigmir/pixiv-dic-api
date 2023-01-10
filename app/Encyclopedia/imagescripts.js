@@ -1,4 +1,4 @@
-import PixivImageInfo from "./image.js";
+import PixivImageInfo from "../ImageInfo/index.js";
 
 export const GetInageByEmbedimage = (embedimage = "<html></html>") => {
     const obj = new PixivImageInfo();
