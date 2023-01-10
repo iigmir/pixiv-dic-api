@@ -34,7 +34,25 @@ describe("Image module", () => {
     describe("input by ID", () => {
         const pure_id = "73684021";
         const expected = {
-            id: "73684021"
+            "id": "73684021",
+            "title": "穂むらの常連",
+            "description": "穂むらまんじゅう20コ入り１つください☺️",
+            "author": {
+                "id": "12163732",
+                "name": "イサミ丼"
+            },
+            "createDate":"2019-03-14T15:11:00+00:00",
+            "uploadDate":"2019-03-14T15:11:00+00:00",
+            "image_link": {
+                "urls": {
+                    "thumb_mini": "https://i.pximg.net/c/128x128/img-master/img/2019/03/15/00/11/04/73684021_p0_square1200.jpg",
+                    "small": "https://i.pximg.net/c/540x540_70/img-master/img/2019/03/15/00/11/04/73684021_p0_master1200.jpg",
+                    "regular": "https://i.pximg.net/img-master/img/2019/03/15/00/11/04/73684021_p0_master1200.jpg",
+                    "original": "https://i.pximg.net/img-original/img/2019/03/15/00/11/04/73684021_p0.jpg"
+                },
+                "width":2894,
+                "height":4093
+            }
         };
         it("should return an interface", async () => {
             const response = await GetInageById(pure_id);
