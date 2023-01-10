@@ -91,6 +91,7 @@ class PixpediaContentItems {
     }
     /**
      * The interface.
+     * @returns {PixpediaSectionContentInterface[]}
      */
     get result() {
         return this.main( this.dom );
