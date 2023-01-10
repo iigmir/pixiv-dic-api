@@ -31,7 +31,7 @@ class PixivAuthorInfo {
      * @param {String} input URL
      * @returns ID
      */
-    get_author_id(input = "https://example.com?id=0") {
+    get_author_id(input = "") {
         const param = new URLSearchParams(input);
         const qsid = param.get("id");
         /**
@@ -50,10 +50,7 @@ class PixivAuthorInfo {
      * @param {Object} dataset HTML dataset
      */
     set_author_by_embedimage_dom(dataset = { authorUrl: "http://www.pixiv.net/member.php?id=0", authorName: "" }) {
-        this.data = {
-            id: this.get_author_id(dataset.authorUrl),
-            name: dataset.authorName,
-        };
+        this.data = dataset;
     }
     /**
      * The interface.

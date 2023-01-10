@@ -58,7 +58,8 @@ class PixivImageInfo {
         this.author_info.author = { id, name };
     }
     set_author_by_dom() {
-        this.author_info.set_author_by_embedimage_dom( this.image_dom.interfaces.author )
+        // console.log(this.image_dom.interfaces.author);
+        this.author_info.data = this.image_dom.interfaces.author;
     }
     // Image link info
     image_links = new PixivImageDatas()
