@@ -39,7 +39,7 @@ class PixpediaContentItems {
      * @param {Element} dom
      * @returns {PixpediaSectionContentInterface}
      */
-    generate_section_content_interface(dom = Element) {
+    generate_content_interface(dom = Element) {
         const source = dom.outerHTML.trim();
         const image = GetInageByEmbedimage( source );
         return { source, image };
@@ -48,15 +48,17 @@ class PixpediaContentItems {
         let result = [];
         let section = new SectionItemInterface("Preface", []);
         const action = (dom = Element, index = 0, articles = []) => {
-            const is_new_section = dom.nodeName === "H2";
+            // States
+            const is_new_title = dom.nodeName === "H2";
             const is_last_section = index + 1 === articles.length;
-            if (is_new_section) {
-                result.push(section.result);
+            const new_content = this.generate_content_interface(dom);
+            // Actions
+            if (is_new_title) {
+                result.push( section.result );
                 section.reset_data();
                 section.title = dom.textContent.trim();
             } else {
-                const content = this.generate_section_content_interface(dom);
-                section.add_content( content );
+                section.add_content( new_content );
             }
             if (is_last_section) {
                 result.push(section.result);
