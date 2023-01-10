@@ -3,7 +3,7 @@ import { GetInageByEmbedimage } from "./imagescripts.js";
 /**
  * @typedef {Object} PixpediaSectionContentInterface
  * @property {String} source The HTML
- * @property {PixivImageInfoInterface|null} [image] If the content is an embedded image, return an object.
+ * @property {PixivImageInfoInterface|null} [image] If the content is an embedded image, return an object. Else, returns null.
  */
 
 class PixpediaContentItems {
