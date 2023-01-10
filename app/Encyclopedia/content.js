@@ -26,10 +26,10 @@ class PixpediaContentParser {
             if( is_new_section ) {
                 result.push( section );
                 section = { title: "Preface", contents: [] };
-                section.title = dom.textContent;
+                section.title = dom.textContent.trim();
             } else {
                 section.contents.push({
-                    source: dom.outerHTML
+                    source: dom.outerHTML.trim()
                 });
             }
             if( is_last_section ) {
