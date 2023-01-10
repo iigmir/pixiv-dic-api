@@ -1,4 +1,4 @@
-import { strictEqual } from "assert";
+import { strictEqual, deepStrictEqual } from "assert";
 import { GetInageByEmbedimage, GetInageById } from "../app/Encyclopedia/imagescripts.js";
 
 describe("Image module", () => {
@@ -25,10 +25,13 @@ describe("Image module", () => {
                 "height": 1353
             }
         };
-        it("should return an interface", async () => {
+        it("should return ID", async () => {
             const response = await GetInageByEmbedimage(embedimage);
-            const result = response.id;
-            strictEqual( result, expected.id );
+            strictEqual( response.id, expected.id );
+        });
+        it("should return author", async () => {
+            const response = await GetInageByEmbedimage(embedimage);
+            deepStrictEqual( response.author, expected.author );
         });
     });
     describe("input by ID", () => {
