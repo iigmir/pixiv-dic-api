@@ -2,7 +2,7 @@ import PixivAuthorInfo from "./author.js"
 import PixivImageDatas from "./images.js";
 import PixivImageMetadata from "./metadata.js";
 import PixivImageDate from "./date.js";
-import { JSDOM } from "jsdom";
+import PixivDomParser from "./dom-parser.js";
 
 class PixivImageInfo {
     constructor() {
@@ -10,33 +10,16 @@ class PixivImageInfo {
     // ID
     id = ""
     set_id_by_dom() {
-        const path = this.document_link.pathname.split("/");
-        this.id = path[2] ?? "";
+        this.id = this.image_dom.interfaces.id;
     }
     // Embed Image
-    embedimage_source = ""
-    embedimage_dom = null
+    image_dom = new PixivDomParser()
     get embedimage() {
-        return this.embedimage_source;
+        return this.image_dom.source;
     }
     set embedimage(embedimage = "<html></html>") {
-        this.embedimage_source = embedimage;
-        this.set_embedimage_dom(this.embedimage);
-    }
-    set_embedimage_dom(embedimage = "<html></html>") {
-        const dom = new JSDOM(embedimage);
-        this.embedimage_dom = dom.window.document;
+        this.image_dom.init_dom(embedimage);
         this.dom_actions();
-    }
-    // DOM tree
-    get document_link() {
-        return this.embedimage_dom.querySelector(".embedimage a");
-    }
-    get dom_invalid() {
-        if( this.embedimage === "" ) {
-            return true;
-        }
-        return this.document_link == null;
     }
     dom_actions() {
         this.set_author_by_dom();
@@ -51,7 +34,7 @@ class PixivImageInfo {
         this.author_info.author = { id, name };
     }
     set_author_by_dom() {
-        this.author_info.set_author_by_embedimage_dom( this.document_link.dataset )
+        this.author_info.set_author_by_embedimage_dom( this.image_dom.interfaces.author )
     }
     // Image link info
     image_links = new PixivImageDatas()
