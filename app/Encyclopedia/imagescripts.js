@@ -1,6 +1,12 @@
+import PixivImageInfo from "./image.js";
+
 export const GetInageByEmbedimage = (embedimage = "<html></html>") => {
-    return { code: embedimage };
+    const obj = new PixivImageInfo();
+    obj.embedimage = embedimage;
+    return obj.result;
 };
 export const GetInageById = (id = "") => {
-    return { code: id };
+    const obj = new PixivImageInfo();
+    obj.id = id;
+    return obj.result;
 };
