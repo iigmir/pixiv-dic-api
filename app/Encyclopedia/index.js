@@ -2,7 +2,7 @@ import { main as generate_breadcrumb } from "./breadcrumb.js";
 import PageSourceDOM from "./dom.js";
 import PageStatus from "./status.js";
 import PixpediaSummary from "./summary.js";
-import PixpediaContentParser from "./content.js";
+import PixpediaContentParser from "../ContentParser/index.js";
 
 /**
  * The encyclopedia object.

@@ -1,4 +1,4 @@
-import { GetInageByEmbedimage } from "./imagescripts.js";
+import { GetInageByEmbedimage } from "../Encyclopedia/imagescripts.js";
 
 /**
  * @typedef {Object} PixpediaSectionContentInterface

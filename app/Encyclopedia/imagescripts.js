@@ -1,8 +1,8 @@
 import PixivImageInfo from "../ImageInfo/index.js";
 
 export const GetInageByEmbedimage = (embedimage = "<html></html>") => {
-    const is_image = /class="embedimage"/.test(embedimage);
-    if( is_image ) {
+    const is_embed = /class="embedimage"/.test(embedimage);
+    if( is_embed ) {
         const obj = new PixivImageInfo("embedimage", embedimage);
         return obj.result;
     }
