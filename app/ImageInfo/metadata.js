@@ -9,21 +9,18 @@ class PixivImageMetadata {
      * @type {String}
      */
     description = ""
-    get data() {
+    /**
+     * The interface.
+     */
+    get result() {
         return {
             title: this.title,
             description: this.description,
         };
     }
-    set data({ title, description }) {
+    set result({ title, description }) {
         this.title = title;
         this.description = description;
-    }
-    /**
-     * The interface.
-     */
-    get result() {
-        return this.data;
     }
 }
 

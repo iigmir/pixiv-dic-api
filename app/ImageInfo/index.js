@@ -1,6 +1,7 @@
 import PixivAuthorInfo from "./author.js"
 import PixivImageDatas from "./images.js";
 import PixivImageMetadata from "./metadata.js";
+import PixivImageDate from "./date.js";
 import { JSDOM } from "jsdom";
 
 class PixivImageInfo {
@@ -59,6 +60,8 @@ class PixivImageInfo {
     }
     // Image metadata
     metadata = new PixivImageMetadata()
+    // Image date
+    dates = new PixivImageDate()
     /**
      * The interface.
      */
@@ -68,8 +71,8 @@ class PixivImageInfo {
             "title": this.metadata.result.title,
             "description": this.metadata.description,
             "author": this.author,
-            "createDate": "",
-            "uploadDate": "",
+            "createDate": this.dates.result.createDate,
+            "uploadDate": this.dates.result.uploadDate,
             "image_link": this.image_link
         };
     }
