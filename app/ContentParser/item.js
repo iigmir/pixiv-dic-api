@@ -69,10 +69,9 @@ class PixpediaContentItems {
     main(array = []) {
         let sections = [];
         let current_section = new SectionItemInterface("Preface", []);
-        const action = (dom = Element, index = 0, articles = []) => {
+        const action = (dom = Element) => {
             // States
             const is_new_title = dom.nodeName === "H2";
-            const is_last_section = index + 1 === articles.length;
             const new_content = new ContentInterface(dom);
             // Actions
             if (is_new_title) {
@@ -82,11 +81,12 @@ class PixpediaContentItems {
             } else {
                 current_section.add_content( new_content.result );
             }
-            if (is_last_section) {
-                sections.push(current_section.result);
-            }
         };
         array.forEach( action );
+        const still_got_contents = Boolean(current_section.result.contents.length);
+        if( still_got_contents ) {
+            sections.push(current_section.result);
+        }
         return sections;
     }
     alt_main(array = []) {
