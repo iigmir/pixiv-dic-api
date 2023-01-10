@@ -38,8 +38,8 @@ describe("Parser module", () => {
             // Functions
             const response = await main(vaild_input);
             if( response.status.message !== "normal" ) {
-                //
                 strictEqual( response.content, null );
+                return;
             }
             notStrictEqual( 2 + 2, 5 );
         });
