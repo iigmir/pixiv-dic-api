@@ -89,7 +89,7 @@ class PixpediaContentItems {
         array.forEach( action );
         return sections;
     }
-    mainv2(array = []) {
+    alt_main(array = []) {
         let current_section = new SectionItemInterface("Preface", []);
         const action = (dom = Element) => {
             const is_new_title = dom.nodeName === "H2";
