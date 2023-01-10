@@ -1,6 +1,6 @@
 import { JSDOM } from "jsdom";
 
-class PixivDomParser {
+class PixivEmbedImageParser {
     source = ""
     document = null
     init_dom(embedimage = "<html></html>") {
@@ -59,4 +59,4 @@ class PixivDomParser {
     }
 }
 
-export default PixivDomParser;
+export default PixivEmbedImageParser;

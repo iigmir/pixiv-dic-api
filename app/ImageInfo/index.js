@@ -2,7 +2,7 @@ import PixivAuthorInfo from "./author.js"
 import PixivImageDatas from "./images.js";
 import PixivImageMetadata from "./metadata.js";
 import PixivImageDate from "./date.js";
-import PixivDomParser from "./dom-parser.js";
+import PixivEmbedImageParser from "./embed-parser.js";
 
 class PixivImageInfo {
     constructor() {
@@ -13,7 +13,7 @@ class PixivImageInfo {
         this.id = this.image_dom.interfaces.id;
     }
     // Embed Image
-    image_dom = new PixivDomParser()
+    image_dom = new PixivEmbedImageParser()
     get embedimage() {
         return this.image_dom.source;
     }
