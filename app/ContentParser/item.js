@@ -89,28 +89,6 @@ class PixpediaContentItems {
         }
         return sections;
     }
-    alt_main(array = []) {
-        let current_section = new SectionItemInterface("Preface", []);
-        const action = (dom = Element) => {
-            const is_new_title = dom.nodeName === "H2";
-            const new_content = new ContentInterface( dom.outerHTML.trim() );
-            // Actions
-            if (is_new_title) {
-                // current_section.reset_data();
-                current_section.title = dom.textContent.trim();
-                let result = current_section.result;
-                current_section.reset_data();
-                return result;
-            } else {
-                current_section.add_content( new_content.result );
-            }
-        };
-        let sections = array.map( action ).filter( e => e );
-        if( current_section.result.contents.length ) {
-            sections.push( current_section.result );
-        }
-        return sections;
-    }
     /**
      * The interface.
      */
