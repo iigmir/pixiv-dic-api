@@ -3,6 +3,11 @@ class PixpediaContentItems {
     constructor(dom = [Element]) {
         this.dom = dom;
     }
+    generate_section_content_interface(dom = Element) {
+        return {
+            source: dom.outerHTML.trim()
+        }
+    }
     get ary() {
         let result = [];
         let section = {
@@ -19,12 +24,10 @@ class PixpediaContentItems {
                     contents: []
                 };
             } else {
-                let int = {
-                    source: dom.outerHTML.trim()
-                };
+                let content = this.generate_section_content_interface(dom);
                 section = {
                     title: section.title,
-                    contents: [...section.contents, int]
+                    contents: [...section.contents, content]
                 };
             }
             if (is_last_section) {
