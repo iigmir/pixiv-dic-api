@@ -1,5 +1,5 @@
 import { strictEqual, deepStrictEqual } from "assert";
-import { GetInageByEmbedimage, GetInageById } from "../app/Encyclopedia/imagescripts.js";
+import { GetImageByEmbedimage, GetInageById } from "../app/Encyclopedia/imagescripts.js";
 
 describe("Image module", () => {
     describe("input by Embedimage", () => {
@@ -26,15 +26,15 @@ describe("Image module", () => {
             }
         };
         it("should return ID", async () => {
-            const response = await GetInageByEmbedimage(embedimage);
+            const response = await GetImageByEmbedimage(embedimage);
             strictEqual( response.id, expected.id );
         });
         it("should return author", async () => {
-            const response = await GetInageByEmbedimage(embedimage);
+            const response = await GetImageByEmbedimage(embedimage);
             deepStrictEqual( response.author, expected.author );
         });
         it("should return metadata", async () => {
-            const response = await GetInageByEmbedimage(embedimage);
+            const response = await GetImageByEmbedimage(embedimage);
             deepStrictEqual( response.title, expected.title );
             deepStrictEqual( response.description, expected.description );
         });
