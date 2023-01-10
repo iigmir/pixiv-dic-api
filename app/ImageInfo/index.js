@@ -5,7 +5,25 @@ import PixivImageDate from "./date.js";
 import PixivEmbedImageParser from "./embed-parser.js";
 
 class PixivImageInfo {
-    constructor() {
+    /**
+     * You can init the object by specifing its type and value.
+     *
+     * If type didn't provided or invalid, nothing will change.
+     * You can, of course, change at anytime anyway.
+     * @param {String} type State type
+     * @param {*} value Input value
+     */
+    constructor(type = "none", value = null) {
+        switch (type) {
+            case "embedimage":
+                this.embedimage = value
+                break;
+            case "id":
+                this.id = value;
+                break;
+            default:
+                break;
+        }
     }
     // ID
     id = ""
