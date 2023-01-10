@@ -1,4 +1,4 @@
-import request from "./app/enc.js";
+import request from "./app/index.js";
 import fs from "fs";
 
 const main = (entry) => {
