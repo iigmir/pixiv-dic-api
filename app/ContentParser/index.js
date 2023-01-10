@@ -6,6 +6,29 @@ import { GetInageByEmbedimage } from "../Encyclopedia/imagescripts.js";
  * @property {PixivImageInfoInterface|null} [image] If the content is an embedded image, return an object. Else, returns null.
  */
 
+class SectionItemInterface {
+    constructor(title = "Preface", contents = []) {
+        this.title = title;
+        this.contents = contents;
+    }
+    add_content(input = {}) {
+        this.contents = [...this.contents, input];
+    }
+    set_title(input = "") {
+        this.title = input;
+    }
+    reset_data() {
+        this.title = "";
+        this.contents = [];
+    }
+    get result() {
+        return {
+            title: this.title,
+            contents: this.contents,
+        };
+    }
+}
+
 class PixpediaContentItems {
     dom = null
     constructor(dom = [Element]) {
@@ -23,28 +46,20 @@ class PixpediaContentItems {
     }
     get ary() {
         let result = [];
-        let section = {
-            title: "Preface",
-            contents: []
-        };
+        let section = new SectionItemInterface("Preface", []);
         const action = (dom = Element, index = 0, articles = []) => {
             const is_new_section = dom.nodeName === "H2";
             const is_last_section = index + 1 === articles.length;
             if (is_new_section) {
-                result.push(section);
-                section = {
-                    title: dom.textContent.trim(),
-                    contents: []
-                };
+                result.push(section.result);
+                section.reset_data();
+                section.title = dom.textContent.trim();
             } else {
-                let content = this.generate_section_content_interface(dom);
-                section = {
-                    title: section.title,
-                    contents: [...section.contents, content]
-                };
+                const content = this.generate_section_content_interface(dom);
+                section.add_content( content );
             }
             if (is_last_section) {
-                result.push(section);
+                result.push(section.result);
             }
         };
         this.dom.forEach( action );
