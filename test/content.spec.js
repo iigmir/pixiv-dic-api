@@ -9,7 +9,7 @@ describe("Content module", () => {
         // Functions
         const response = await main(vaild_input);
         const content = response.content[0];
-        strictEqual( typeof(content), expected );
+        strictEqual( typeof(content.source), expected );
     });
     // it("should return a breadcrumb", async () => {
     //     // Infos
