@@ -40,6 +40,26 @@ class PixivAuthorInfo {
     }
 }
 
+class PixivImageDatas {
+    data = {
+        "urls": {
+            "thumb_mini": "",
+            "small": "",
+            "regular": "",
+            "original": ""
+        },
+        "width": 0,
+        "height": 0
+    }
+    ask_image_link = false
+    get image_link() {
+        return this.data;
+    }
+    get result() {
+        return this.data;
+    }
+}
+
 class PixivImageInfo {
     constructor() {
     }
@@ -90,23 +110,9 @@ class PixivImageInfo {
         this.author_info.set_author_by_dom( this.document_link.dataset )
     }
     // Image link info
-    image_links = {
-        "urls": {
-            "thumb_mini": "",
-            "small": "",
-            "regular": "",
-            "original": ""
-        },
-        "width": 0,
-        "height": 0
-    }
+    image_links = new PixivImageDatas()
     get image_link() {
-        return this.image_links;
-    }
-    // Ask image link
-    ask_image_link = false
-    set_ask_image_link(ask_image_link = false) {
-        this.ask_image_link = ask_image_link;
+        return this.image_links.result;
     }
     /**
      * The interface.
