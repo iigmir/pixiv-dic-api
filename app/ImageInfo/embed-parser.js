@@ -27,14 +27,14 @@ class PixivEmbedImageParser {
      * @returns ID
      */
     get_author_id(input = "https://example.com?id=0") {
-        const param = new URLSearchParams(input);
+        const url = new URL(input);
+        const param = url.searchParams;
         const qsid = param.get("id");
         /**
          * Format is https://pixiv.net/users/0
          */
         if( qsid == null ) {
-            const path = (new URL(input)).pathname;
-            const paths = path.split("/");
+            const paths = url.pathname.split("/");
             const is_user = paths[1] === "users";
             return is_user ? paths[2] : "0";
         }

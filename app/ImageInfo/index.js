@@ -22,7 +22,7 @@ class PixivImageInfo {
     constructor(type = "none", value = null) {
         switch (type) {
             case "embedimage":
-                this.embedimage = value
+                this.embedimage = value;
                 break;
             case "id":
                 this.id = value;
@@ -34,15 +34,15 @@ class PixivImageInfo {
     // ID
     id = ""
     set_id_by_dom() {
-        this.id = this.image_dom.interfaces.id;
+        this.id = this.embedded_image.interfaces.id;
     }
     // Embed Image
-    image_dom = new PixivEmbedImageParser()
+    embedded_image = new PixivEmbedImageParser()
     get embedimage() {
-        return this.image_dom.source;
+        return this.embedded_image.source;
     }
     set embedimage(embedimage = "<html></html>") {
-        this.image_dom.init_dom(embedimage);
+        this.embedded_image.init_dom(embedimage);
         this.dom_actions();
     }
     dom_actions() {
@@ -59,7 +59,7 @@ class PixivImageInfo {
     }
     set_author_by_dom() {
         // console.log(this.image_dom.interfaces.author);
-        this.author_info.data = this.image_dom.interfaces.author;
+        this.author_info.data = this.embedded_image.interfaces.author;
     }
     // Image link info
     image_links = new PixivImageDatas()
