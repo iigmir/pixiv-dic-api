@@ -1,11 +1,29 @@
+/**
+ * @typedef {Object} PixivAuthorInterface
+ * @property {String|Number} id Author ID in Pixiv
+ * @property {String} name Author name in Pixiv
+ */
+
+/**
+ * Author info
+ */
 class PixivAuthorInfo {
+    /**
+     * @type {PixivAuthorInterface}
+     */
     data = {
         "id": "",
         "name": ""
     }
+    /**
+     * @return {PixivAuthorInterface}
+     */
     get author() {
         return this.data;
     }
+    /**
+     * @param {PixivAuthorInterface}
+     */
     set author({ id = "", name = "" }) {
         this.data = { id, name };
     }
@@ -27,12 +45,20 @@ class PixivAuthorInfo {
         }
         return qsid ?? "0";
     }
-    set_author_by_dom(dataset = { authorUrl: "http://www.pixiv.net/member.php?id=0", authorName: "" }) {
+    /**
+     * If the author info is from embed image, use them.
+     * @param {Object} dataset HTML dataset
+     */
+    set_author_by_embedimage_dom(dataset = { authorUrl: "http://www.pixiv.net/member.php?id=0", authorName: "" }) {
         this.data = {
             id: this.get_author_id(dataset.authorUrl),
             name: dataset.authorName,
         };
     }
+    /**
+     * The interface.
+     * @return {PixivAuthorInterface}
+     */
     get result() {
         return this.author;
     }

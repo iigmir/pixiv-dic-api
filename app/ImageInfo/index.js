@@ -50,7 +50,7 @@ class PixivImageInfo {
         this.author_info.author = { id, name };
     }
     set_author_by_dom() {
-        this.author_info.set_author_by_dom( this.document_link.dataset )
+        this.author_info.set_author_by_embedimage_dom( this.document_link.dataset )
     }
     // Image link info
     image_links = new PixivImageDatas()
