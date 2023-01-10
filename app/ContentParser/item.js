@@ -1,10 +1,31 @@
 import { GetInageByEmbedimage } from "../Encyclopedia/imagescripts.js";
 
-/**
- * @typedef {Object} PixpediaSectionContentInterface
- * @property {String} source The HTML
- * @property {PixivImageInfoInterface|null} [image] If the content is an embedded image, return an object. Else, returns null.
- */
+class ContentInterface {
+    constructor( source ) {
+        this.source = source;
+    }
+    /**
+     * @returns {PixivImageInfoInterface} Image interface
+     */
+    get image() {
+        return GetInageByEmbedimage( this.source );
+    }
+    /**
+     * @typedef {Object} PixpediaSectionContentInterface
+     * @property {String} source The HTML
+     * @property {PixivImageInfoInterface|null} [image] If the content is an embedded image, return an object. Else, returns null.
+     */
+    /**
+     * The interface.
+     * @returns {PixpediaSectionContentInterface}
+     */
+    get result() {
+        return {
+            source: this.source,
+            image: this.image,
+        };
+    }
+}
 
 class SectionItemInterface {
     constructor(title = "Preface", contents = []) {
@@ -34,16 +55,6 @@ class PixpediaContentItems {
     constructor(dom = [Element]) {
         this.dom = dom;
     }
-    /**
-     * COntent interface
-     * @param {Element} dom
-     * @returns {PixpediaSectionContentInterface}
-     */
-    generate_content_interface(dom = Element) {
-        const source = dom.outerHTML.trim();
-        const image = GetInageByEmbedimage( source );
-        return { source, image };
-    }
     get ary() {
         let result = [];
         let section = new SectionItemInterface("Preface", []);
@@ -51,14 +62,14 @@ class PixpediaContentItems {
             // States
             const is_new_title = dom.nodeName === "H2";
             const is_last_section = index + 1 === articles.length;
-            const new_content = this.generate_content_interface(dom);
+            const new_content = new ContentInterface(dom);
             // Actions
             if (is_new_title) {
                 result.push( section.result );
                 section.reset_data();
                 section.title = dom.textContent.trim();
             } else {
-                section.add_content( new_content );
+                section.add_content( new_content.result );
             }
             if (is_last_section) {
                 result.push(section.result);
