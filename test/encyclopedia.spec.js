@@ -1,7 +1,7 @@
 import main from "../app/index.js";
 import { strictEqual, deepStrictEqual } from "assert";
 
-describe("Parser module", () => {
+describe("Main parser module", () => {
     const vaild_input = "園田海未";
     it("should return a summary", async () => {
         // Infos
