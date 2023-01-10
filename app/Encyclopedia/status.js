@@ -23,6 +23,19 @@ class PageStatus {
         return "normal";
     }
     /**
+     * Return a HTTP response status code.
+     * @see <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>
+     * @returns {Number} code
+     */
+    get code() {
+        switch (this.message) {
+            case "normal": return 200;
+            case "document-uninitialised": return 204;
+            case "under-maintenance": return 503;
+            default: return 500;
+        }
+    }
+    /**
      * Result
      * @return {PageStatusInterface} Of course.
      */
@@ -30,9 +43,11 @@ class PageStatus {
         /**
          * @typedef {Object} PageStatusInterface
          * @property {String} message The message.
+         * @property {String} code HTTP response status code.
          */
         return {
-            message: this.message
+            message: this.message,
+            code: this.code,
         };
     }
 }
