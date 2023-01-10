@@ -5,7 +5,8 @@ class PixpediaContentParser {
     }
     get articles_source() {
         const article = this.document.querySelector("#article-body");
-        return [...article.children];
+        const result = article == null ? [] : [...article.children];
+        return result;
     }
     /**
      * Render contents
