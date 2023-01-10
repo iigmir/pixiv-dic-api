@@ -18,24 +18,27 @@ class PixpediaContentParser {
             title: "Preface",
             contents: []
         };
-        // List
-        // console.log(this.articles_source.length);
-        this.articles_source.forEach( (dom = Element, index = 0, articles = []) => {
+        const action = (dom = Element, index = 0, articles = []) => {
             const is_new_section = dom.nodeName === "H2";
             const is_last_section = index + 1 === articles.length;
-            if( is_new_section ) {
-                result.push( section );
-                section = { title: "Preface", contents: [] };
-                section.title = dom.textContent.trim();
+            if (is_new_section) {
+                result.push(section);
+                section = {
+                    title: dom.textContent.trim(),
+                    contents: []
+                };
             } else {
                 section.contents.push({
                     source: dom.outerHTML.trim()
                 });
             }
-            if( is_last_section ) {
-                result.push( section );
+            if (is_last_section) {
+                result.push(section);
             }
-        });
+        };
+        // List
+        // console.log(this.articles_source.length);
+        this.articles_source.forEach( action );
         this.contents = result;
     }
     get result() {
