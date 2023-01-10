@@ -1,4 +1,4 @@
-import { GetInageByEmbedimage } from "../Encyclopedia/imagescripts.js";
+import { GetImageByEmbedimage } from "../Encyclopedia/imagescripts.js";
 
 class ContentInterface {
     constructor( source ) {
@@ -8,7 +8,7 @@ class ContentInterface {
      * @returns {PixivImageInfoInterface} Image interface
      */
     get image() {
-        return GetInageByEmbedimage( this.source );
+        return GetImageByEmbedimage( this.source );
     }
     /**
      * @typedef {Object} PixpediaSectionContentInterface

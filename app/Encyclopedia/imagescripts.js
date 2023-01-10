@@ -8,6 +8,9 @@ export const GetInageByEmbedimage = (embedimage = "<html></html>") => {
     }
     return null;
 };
+
+export const GetImageByEmbedimage = GetInageByEmbedimage;
+
 export const GetInageById = (id = "") => {
     const obj = new PixivImageInfo("id", id);
     return obj.result;
