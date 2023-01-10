@@ -1,7 +1,7 @@
-import { JSDOM } from "jsdom";
-
 import PixivAuthorInfo from "./author.js"
 import PixivImageDatas from "./images.js";
+import PixivImageMetadata from "./metadata.js";
+import { JSDOM } from "jsdom";
 
 class PixivImageInfo {
     constructor() {
@@ -57,14 +57,16 @@ class PixivImageInfo {
     get image_link() {
         return this.image_links.result;
     }
+    // Image metadata
+    metadata = new PixivImageMetadata()
     /**
      * The interface.
      */
     get result() {
         return {
             "id": this.id,
-            "title": "",
-            "description": "",
+            "title": this.metadata.result.title,
+            "description": this.metadata.description,
             "author": this.author,
             "createDate": "",
             "uploadDate": "",
