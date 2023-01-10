@@ -10,6 +10,9 @@ import PixivEmbedImageParser from "./embed-parser.js";
  * @property {String} title Pixiv image title
  */
 
+/**
+ * AN image's infomation at Pixiv, containing author info, title, date, etc.
+ */
 class PixivImageInfo {
     /**
      * You can init the object by specifing its type and value.

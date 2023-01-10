@@ -50,12 +50,23 @@ class SectionItemInterface {
     }
 }
 
+/**
+ * Each section's content infomation, containing source HTML, image info, texts, etc.
+ *
+ * Infomations will be sperated into new interfaces.
+ */
 class PixpediaContentItems {
     dom = null
     constructor(dom = [Element]) {
         this.dom = dom;
     }
-    get ary() {
+    /**
+     * Go
+     * @todo Can improve
+     * @param {Array} array
+     * @returns Infos for sections.
+     */
+    main(array = []) {
         let result = [];
         let section = new SectionItemInterface("Preface", []);
         const action = (dom = Element, index = 0, articles = []) => {
@@ -75,8 +86,14 @@ class PixpediaContentItems {
                 result.push(section.result);
             }
         };
-        this.dom.forEach( action );
+        array.forEach( action );
         return result;
+    }
+    /**
+     * The interface.
+     */
+    get result() {
+        return this.main( this.dom );
     }
 }
 
