@@ -1,12 +1,25 @@
+import { GetInageByEmbedimage } from "./imagescripts.js";
+
+/**
+ * @typedef {Object} PixpediaSectionContentInterface
+ * @property {String} source The HTML
+ * @property {PixivImageInfoInterface|null} [image] If the content is an embedded image, return an object.
+ */
+
 class PixpediaContentItems {
     dom = null
     constructor(dom = [Element]) {
         this.dom = dom;
     }
+    /**
+     * COntent interface
+     * @param {Element} dom
+     * @returns {PixpediaSectionContentInterface}
+     */
     generate_section_content_interface(dom = Element) {
-        return {
-            source: dom.outerHTML.trim()
-        }
+        const source = dom.outerHTML.trim();
+        const image = GetInageByEmbedimage( source );
+        return { source, image };
     }
     get ary() {
         let result = [];

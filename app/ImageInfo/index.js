@@ -4,6 +4,12 @@ import PixivImageMetadata from "./metadata.js";
 import PixivImageDate from "./date.js";
 import PixivEmbedImageParser from "./embed-parser.js";
 
+/**
+ * @typedef {Object} PixivImageInfoInterface
+ * @property {String|Number} id Pixiv image ID
+ * @property {String} title Pixiv image title
+ */
+
 class PixivImageInfo {
     /**
      * You can init the object by specifing its type and value.
@@ -65,6 +71,7 @@ class PixivImageInfo {
     dates = new PixivImageDate()
     /**
      * The interface.
+     * @returns {PixivImageInfoInterface}
      */
     get result() {
         return {
