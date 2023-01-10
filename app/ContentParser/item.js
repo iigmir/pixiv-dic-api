@@ -1,7 +1,7 @@
 import { GetImageByEmbedimage } from "../Encyclopedia/imagescripts.js";
 
 class ContentInterface {
-    constructor( source ) {
+    constructor(source = "") {
         this.source = source;
     }
     /**
@@ -93,7 +93,7 @@ class PixpediaContentItems {
         let current_section = new SectionItemInterface("Preface", []);
         const action = (dom = Element) => {
             const is_new_title = dom.nodeName === "H2";
-            const new_content = new ContentInterface(dom);
+            const new_content = new ContentInterface( dom.outerHTML.trim() );
             // Actions
             if (is_new_title) {
                 // current_section.reset_data();
