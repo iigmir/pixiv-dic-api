@@ -48,6 +48,7 @@ class PixivImageInfo {
     dom_actions() {
         this.set_author_by_dom();
         this.set_id_by_dom();
+        this.set_metadata_by_dom();
     }
     // Author datas
     author_info = new PixivAuthorInfo()
@@ -58,7 +59,6 @@ class PixivImageInfo {
         this.author_info.author = { id, name };
     }
     set_author_by_dom() {
-        // console.log(this.image_dom.interfaces.author);
         this.author_info.data = this.embedded_image.interfaces.author;
     }
     // Image link info
@@ -68,6 +68,9 @@ class PixivImageInfo {
     }
     // Image metadata
     metadata = new PixivImageMetadata()
+    set_metadata_by_dom() {
+        this.metadata.result = this.embedded_image.interfaces.metadata;
+    }
     // Image date
     dates = new PixivImageDate()
     /**

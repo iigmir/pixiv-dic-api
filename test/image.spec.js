@@ -33,6 +33,11 @@ describe("Image module", () => {
             const response = await GetInageByEmbedimage(embedimage);
             deepStrictEqual( response.author, expected.author );
         });
+        it("should return metadata", async () => {
+            const response = await GetInageByEmbedimage(embedimage);
+            deepStrictEqual( response.title, expected.title );
+            deepStrictEqual( response.description, expected.description );
+        });
     });
     describe("input by ID", () => {
         const pure_id = "73684021";

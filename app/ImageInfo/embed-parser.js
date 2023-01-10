@@ -51,10 +51,18 @@ class PixivEmbedImageParser {
         const path = this.document_link.pathname.split("/");
         return path[2] ?? "";
     }
+    get metadata_interface() {
+        const { dataset } = this.document_link;
+        return {
+            title: this.document_link.title,
+            description: dataset.caption,
+        };
+    }
     get interfaces() {
         return {
             author: this.author_interface,
-            id: this.id_interface
+            id: this.id_interface,
+            metadata: this.metadata_interface,
         };
     }
 }
