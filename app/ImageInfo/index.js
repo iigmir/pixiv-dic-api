@@ -19,7 +19,12 @@ class PixivImageInfo {
      *
      * If type didn't provided or invalid, nothing will change.
      * You can, of course, change at anytime anyway.
-     * @param {String} type State type
+     * @param {String} type State type. Currently there are three values:
+     *
+     * 1. `embedimage`: If the image is from embedded image in Pixiv Encyclopedia, use the value and provide the `class="embedimage"` HTML source code.
+     * 2. `id`: The image ID from Pixiv. For example, `40137670` for <https://www.pixiv.net/artworks/40137670>.
+     * 3. `none`: This is the default value and nothing executed.
+     *
      * @param {*} value Input value
      */
     constructor(type = "none", value = null) {
@@ -30,12 +35,13 @@ class PixivImageInfo {
             case "id":
                 this.id = value;
                 break;
+            case "none":
             default:
                 break;
         }
     }
     // ID
-    id = ""
+    id = "none"
     set_id_by_dom() {
         this.id = this.embedded_image.interfaces.id;
     }
