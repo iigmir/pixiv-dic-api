@@ -37,5 +37,5 @@ export const GetTextByHtml = (htmltext = "<html></html>") => {
  */
 export const GetTitle = (htmltext = "<html></html>") => {
     const source = get_html_texts(htmltext);
-    return is_title(htmltext) ? source : "null";
+    return is_title(htmltext) ? source : null;
 };
