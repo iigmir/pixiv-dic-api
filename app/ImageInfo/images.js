@@ -1,3 +1,4 @@
+import { GetImageLinks } from "../api/pixiv.js";
 /**
  * @typedef {Object} PixivImageDataInterface
  * @property {Object} urls Image URL paths
@@ -25,6 +26,19 @@ class PixivImageDatas {
         "height": 0
     }
     ask_image_link = false
+    reqeest_data(id = "") {
+        this.ask_image_link = true;
+        return new Promise( (resolve, reject) => {
+            const res = (resolve) => (data) => {
+                this.data = data.body[0];
+                resolve(data);
+            };
+            const rej = error => {
+                reject(error);
+            };
+            GetImageLinks( id ).then( res(resolve) ).catch( rej );
+        });
+    }
     get image_link() {
         return this.data;
     }
