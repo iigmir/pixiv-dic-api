@@ -36,8 +36,8 @@ const main_get = (url = "https://jsonplaceholder.typicode.com/users") => {
             response.on( "end", end_action(data, resolve) );
         };
         const reject_action = error => { reject(error); };
-        // const options = { headers: { "User-Agent": "Mozilla/5.0" } };
-        https.get( url, resolve_action ).on( "error", reject_action );
+        const options = { headers: { "User-Agent": "Mozilla/5.0" } };
+        https.get( url, options, resolve_action ).on( "error", reject_action );
     });
 };
 
