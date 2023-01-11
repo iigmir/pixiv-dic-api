@@ -26,7 +26,7 @@ class PixivImageDatas {
         "height": 0
     }
     ask_image_link = false
-    reqeest_data(id = "") {
+    request_data(id = "") {
         this.ask_image_link = true;
         const res = (resolve) => (data) => {
             this.data = data.body[0];
