@@ -28,16 +28,17 @@ class PixivImageDatas {
     ask_image_link = false
     reqeest_data(id = "") {
         this.ask_image_link = true;
-        return new Promise( (resolve, reject) => {
-            const res = (resolve) => (data) => {
-                this.data = data.body[0];
-                resolve(data);
-            };
-            const rej = error => {
-                reject(error);
-            };
-            GetImageLinks( id ).then( res(resolve) ).catch( rej );
-        });
+        const res = (resolve) => (data) => {
+            this.data = data.body[0];
+            resolve(data);
+        };
+        const rej = (reject) => error => {
+            reject(error);
+        };
+        const promise_action = (resolve, reject) => {
+            GetImageLinks( id ).then( res(resolve) ).catch( rej(reject) );
+        };
+        return new Promise( promise_action );
     }
     get image_link() {
         return this.data;
