@@ -1,5 +1,5 @@
 import { GetImageByEmbedimage } from "../Encyclopedia/imagescripts.js";
-import { GetTextByHtml } from "../TextParser/script.js";
+import { GetTextByHtml, GetTitle } from "../TextParser/script.js";
 
 class ContentInterface {
     constructor(source = "") {
@@ -17,6 +17,9 @@ class ContentInterface {
     get texts() {
         return GetTextByHtml( this.source );
     }
+    get title() {
+        return GetTitle( this.source );
+    }
     /**
      * @typedef {Object} PixpediaSectionContentInterface
      * @property {String} source The HTML
@@ -31,6 +34,7 @@ class ContentInterface {
             source: this.source,
             image: this.image,
             texts: this.texts,
+            title: this.title,
         };
     }
 }
