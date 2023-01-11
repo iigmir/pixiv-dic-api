@@ -6,5 +6,7 @@ import { JSDOM } from "jsdom";
  */
 export const GetTextByHtml = (htmltext = "<html></html>") => {
     const dom = new JSDOM(htmltext);
-    return dom.window.document.body.textContent.trim();
+    const source = dom.window.document.body.textContent.trim();
+    const rendered = source.split("\n\n");
+    return { source, rendered };
 };
