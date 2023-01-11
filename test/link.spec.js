@@ -22,8 +22,8 @@ describe( "LinkContent", () => {
         const object = new LinkContent(input);
         const object2 = new LinkContent(input2);
         it("should get it's source link", () => {
-            strictEqual( object.result.entry, "/a/%E3%83%81%E3%83%BC%E3%82%BA%E3%82%B1%E3%83%BC%E3%82%AD%E9%8D%8B" );
-            strictEqual( object2.result.entry, "/a/%E9%AB%98%E6%B5%B7%E5%8D%83%E6%AD%8C" );
+            strictEqual( object.result.href, "/a/%E3%83%81%E3%83%BC%E3%82%BA%E3%82%B1%E3%83%BC%E3%82%AD%E9%8D%8B" );
+            strictEqual( object2.result.href, "/a/%E9%AB%98%E6%B5%B7%E5%8D%83%E6%AD%8C" );
         });
         it("should get it's ID", () => {
             strictEqual( object.result.entry, "チーズケーキ鍋" );

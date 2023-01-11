@@ -45,7 +45,7 @@ class LinkContent {
      * @returns {String}
      */
     get mode() {
-        if( /^www.pixiv.net\/artworks\//g.test(this.href) ) {
+        if( /www.pixiv.net\/artworks\//g.test(this.href) ) {
             return "image";
         }
         if( /^\/a\//g.test(this.href) ) {
