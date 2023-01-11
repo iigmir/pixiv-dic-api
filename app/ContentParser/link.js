@@ -2,15 +2,9 @@ import { JSDOM } from "jsdom";
 
 class LinkContent {
     constructor(source = "") {
+        const dom = new JSDOM( source );
         this.source = source;
-    }
-    /**
-     * The reference DOM.
-     * @returns {Element}
-     */
-    get dom() {
-        const dom = new JSDOM( this.source );
-        return dom.window.document.body;
+        this.dom = dom.window.document.querySelector("a");
     }
     /**
      * The link's href.
