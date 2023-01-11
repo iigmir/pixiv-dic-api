@@ -9,7 +9,18 @@ export const GetTag = (tag = "pixiv") => {
 
 export const GetEncyclopediaEntry = (tag = "pixiv") => {
     const url = `https://dic.pixiv.net/a/${tag}`;
-    return request(url);
+    const ajax_response = new Promise( (resolve, reject) => {
+        const r = request(url);
+        const catch_error = error => reject( error );
+        r.then( response => {
+            const under_maintenance = /メンテナンス中/.test( response );
+            if( under_maintenance ) {
+                catch_error( "Under maintenance" );
+            }
+            resolve( response );
+        }).catch( catch_error );
+    });
+    return ajax_response;
 };
 
 export const GetImageLinks = (id = "") => {
