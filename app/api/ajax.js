@@ -15,6 +15,7 @@ const end_action = (data, resolve) => {
                 return input;
             }
         };
+        // eslint-disable-next-line no-undef
         const buffered_str = Buffer.concat(data).toString();
         resolve(parse_data(buffered_str));
     };
@@ -28,13 +29,15 @@ const end_action = (data, resolve) => {
  */
 const main_get = (url = "https://jsonplaceholder.typicode.com/users") => {
     return new Promise((resolve, reject) => {
-        https.get( url, response => {
+        const resolve_action = response => {
             let data = [];
-            response.on("data", chunk => { data.push(chunk); });
-            response.on("end", end_action(data, resolve));
-        }).on("error", error => {
-            reject(error);
-        });
+            const push_chunk = chunk => { data.push(chunk); };
+            response.on( "data", push_chunk );
+            response.on( "end", end_action(data, resolve) );
+        };
+        const reject_action = error => { reject(error); };
+        // const options = { headers: { "User-Agent": "Mozilla/5.0" } };
+        https.get( url, resolve_action ).on( "error", reject_action );
     });
 };
 
