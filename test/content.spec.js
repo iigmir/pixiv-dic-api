@@ -1,5 +1,5 @@
 import main from "../app/index.js";
-import { strictEqual, deepStrictEqual } from "assert";
+import { strictEqual } from "assert";
 
 const is_stable = response => response.status.code === 200;
 
