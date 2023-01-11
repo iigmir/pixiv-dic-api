@@ -17,6 +17,9 @@ class ContentInterface {
     get texts() {
         return GetTextByHtml( this.source );
     }
+    /**
+     * If it's a title, return the title's text.
+     */
     get title() {
         return GetTitle( this.source );
     }
