@@ -40,7 +40,7 @@ describe("Content module", () => {
             // Functions
             const response = await main(vaild_input);
             if( is_stable(response) ) {
-                const content = response.content[0].contents[3];
+                const content = response.content[0].contents[2];
                 strictEqual( content.text, expected );
             } else {
                 strictEqual( response.status.message, "normal" );
