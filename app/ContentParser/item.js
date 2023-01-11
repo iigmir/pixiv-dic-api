@@ -14,7 +14,7 @@ class ContentInterface {
     /**
      * @returns {PixivImageInfoInterface} Text interface
      */
-    get text() {
+    get texts() {
         return GetTextByHtml( this.source );
     }
     /**
@@ -30,7 +30,7 @@ class ContentInterface {
         return {
             source: this.source,
             image: this.image,
-            text: this.text,
+            texts: this.texts,
         };
     }
 }

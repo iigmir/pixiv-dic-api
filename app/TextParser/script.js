@@ -8,5 +8,5 @@ export const GetTextByHtml = (htmltext = "<html></html>") => {
     const dom = new JSDOM(htmltext);
     const source = dom.window.document.body.textContent.trim();
     const rendered = source.split("\n\n").filter( i => i.trim() !== "" );
-    return { source, rendered };
+    return rendered;
 };

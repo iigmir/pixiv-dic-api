@@ -1,5 +1,5 @@
 import main from "../app/index.js";
-import { strictEqual } from "assert";
+import { strictEqual, deepStrictEqual } from "assert";
 
 const is_stable = response => response.status.code === 200;
 
@@ -36,12 +36,12 @@ describe("Content module", () => {
     describe( "Text", () => {
         it("should have a text if it is a text", async () => {
             // Infos
-            const expected = "「それが穂乃果の凄い所なんです。わたしもことりも、μ'sのみんなもそう思っています」";
+            const expected = ["「それが穂乃果の凄い所なんです。わたしもことりも、μ'sのみんなもそう思っています」"];
             // Functions
             const response = await main(vaild_input);
             if( is_stable(response) ) {
                 const content = response.content[0].contents[2];
-                strictEqual( content.text.source, expected );
+                deepStrictEqual( content.texts, expected );
             } else {
                 strictEqual( response.status.message, "normal" );
             }
