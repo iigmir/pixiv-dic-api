@@ -11,7 +11,7 @@ class LinkContent {
      * @returns {String}
      */
     get href() {
-        return this.dom.href;
+        return this.dom?.href ?? "";
     }
     /**
      * In `image` mode, it's the image's ID,
@@ -34,7 +34,8 @@ class LinkContent {
      * @returns {String}
      */
     get text() {
-        return this.dom.textContent.trim();
+        const textContent = this.dom?.textContent ?? "";
+        return textContent.trim();
     }
     /**
      * Three:
@@ -69,7 +70,7 @@ class LinkContent {
  */
 const GetAllLinksContent = (source = "") => {
     const dom = new JSDOM( source );
-    const links = [...dom.window.document.querySelectorAll("a")].map( ({ innerHTML }) => innerHTML );
+    const links = [...dom.window.document.querySelectorAll("a")].map( (i) => i.outerHTML );
     return links.map( link => (new LinkContent(link)).result );
 };
 
