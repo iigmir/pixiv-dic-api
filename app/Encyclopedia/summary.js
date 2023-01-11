@@ -35,10 +35,15 @@ class PixpediaSummary {
         const main = async (resolve, reject) => {
             try {
                 const response = await GetTag(entry);
-                this.set_result(response.body.pixpedia);
+                this.result = {
+                    ...response.body.pixpedia,
+                    pixpedia_url: `https://dic.pixiv.net/a/${entry}`,
+                }
                 resolve(response);
             } catch (error) {
-                this.set_result(this.preview);
+                this.result = {
+                    pixpedia_url: `https://dic.pixiv.net/a/${entry}`,
+                };
                 reject(error);
             }
         };
