@@ -81,17 +81,17 @@ class PixivEncyclopedia {
         });
     }
     /**
+     * @typedef {Object} PixivEncyclopediaInterface
+     * @property {PixpediaSummaryInterface} summary The summary.
+     * @property {PixpediaBreadcumbInterface} breadcrumb The breadcrumb.
+     * @property {PageStatusInterface} status The status.
+     * @property {PixpediaContentInterface} content The content.
+     */
+    /**
      * The interface.
      * @returns {PixivEncyclopediaInterface}
      */
     get result() {
-        /**
-         * @typedef {Object} PixivEncyclopediaInterface
-         * @property {PixpediaSummaryInterface} summary The summary.
-         * @property {PixpediaBreadcumbInterface} breadcrumb The breadcrumb.
-         * @property {PageStatusInterface} status The status.
-         * @property {PixpediaContentInterface} content The content.
-         */
         if( this.status.message !== "normal" ) {
             return {
                 summary: null,
