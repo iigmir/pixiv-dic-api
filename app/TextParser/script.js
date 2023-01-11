@@ -6,5 +6,5 @@ import { JSDOM } from "jsdom";
  */
 export const GetTextByHtml = (htmltext = "<html></html>") => {
     const dom = new JSDOM(htmltext);
-    return dom.window.document.body.innerText;
+    return dom.window.document.body.textContent;
 };
