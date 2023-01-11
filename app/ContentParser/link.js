@@ -62,4 +62,15 @@ class LinkContent {
     }
 }
 
-export default LinkContent;
+/**
+ * querySelectorAll => All links info. 😊
+ * @param {String} source
+ * @returns
+ */
+const GetAllLinksContent = (source = "") => {
+    const dom = new JSDOM( source );
+    const links = [...dom.window.document.querySelectorAll("a")].map( ({ innerHTML }) => innerHTML );
+    return links.map( link => (new LinkContent(link)).result );
+};
+
+export { LinkContent, GetAllLinksContent };

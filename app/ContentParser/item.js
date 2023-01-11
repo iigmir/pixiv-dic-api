@@ -1,5 +1,6 @@
 import { GetImageByEmbedimage } from "../Encyclopedia/imagescripts.js";
 import { GetTextByHtml, GetTitle } from "../TextParser/script.js";
+import { GetAllLinksContent } from "./link.js";
 
 class ContentInterface {
     constructor(source = "") {
@@ -18,6 +19,12 @@ class ContentInterface {
         return GetTextByHtml( this.source );
     }
     /**
+     * All links info.
+     */
+    get links() {
+        return GetAllLinksContent( this.source );
+    }
+    /**
      * If it's a title, return the title's text.
      */
     get title() {
@@ -33,12 +40,8 @@ class ContentInterface {
      * @returns {PixpediaSectionContentInterface}
      */
     get result() {
-        return {
-            source: this.source,
-            image: this.image,
-            texts: this.texts,
-            title: this.title,
-        };
+        const { source, image, texts, title, links } = this;
+        return { source, image, texts, title, links };
     }
 }
 
