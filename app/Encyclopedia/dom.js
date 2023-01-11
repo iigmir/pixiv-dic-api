@@ -16,7 +16,6 @@ class PageSourceDOM {
                 resolve(this.result);
             } catch (error) {
                 this.set_document("", entry);
-                console.error( error );
                 reject(error);
             }
         };

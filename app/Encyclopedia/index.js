@@ -23,7 +23,11 @@ class PixivEncyclopedia {
     set_document() {
         const main = async (resolve) => {
             const dom = new PageSourceDOM();
-            dom.ajax(this.entry).finally( () => {
+            const catch_action = error => {
+                console.error(error);
+                throw new TypeError("Something's wrong");
+            };
+            dom.ajax( this.entry ).catch( catch_action ).finally( () => {
                 this.document = dom.result;
                 this.set_status_object(this.entry, this.document);
                 resolve();
