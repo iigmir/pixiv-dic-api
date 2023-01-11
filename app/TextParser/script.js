@@ -1,7 +1,7 @@
 import { JSDOM } from "jsdom";
 
 const should_not_parse = (htmltext = "<html></html>") => {
-    const regex = /(^<h1)|(^<h2)(^<h3)|(^<h4)|(^<h5)|(^<h6)|(^<table)|(^<ul)|(d_toparticle_flux_ad)/g;
+    const regex = /(^<h1)|(^<h2)|(^<h3)|(^<h4)|(^<h5)|(^<h6)|(^<table)|(^<ul)|(d_toparticle_flux_ad)/g;
     return regex.test( htmltext );
 };
 
