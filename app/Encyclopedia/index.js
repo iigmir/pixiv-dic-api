@@ -3,6 +3,7 @@ import { GetPixpediaMetainfo } from "./metainfo.js";
 import PageSourceDOM from "./dom.js";
 import PageStatus from "./status.js";
 import PixpediaSummary from "./summary.js";
+import EntryRelationship from "./relation.js";
 import PixpediaContentParser from "../ContentParser/index.js";
 
 /**
@@ -16,6 +17,7 @@ class PixivEncyclopedia {
         this.status_object = null;
         this.content = null;
         this.metainfo = null;
+        this.relation = null;
     }
     // Status
     set_status_object(entry, document) {
@@ -55,6 +57,12 @@ class PixivEncyclopedia {
         this.content = content.result;
         return Promise.resolve();
     }
+    set_relation() {
+        const relation = new EntryRelationship(this.document);
+        // content.set_contents();
+        this.relation = relation.result;
+        return Promise.resolve();
+    }
     // Metainfo
     set_metainfo() {
         this.metainfo = GetPixpediaMetainfo(this.document);
@@ -79,8 +87,11 @@ class PixivEncyclopedia {
                 this.set_document(),
             ]);
             actions.then( () => {
+                // Actions
                 this.set_content();
                 this.set_metainfo();
+                this.set_relation();
+                // Resolve
                 resolve();
             }).catch( (error) => {
                 reject(error);
@@ -114,6 +125,7 @@ class PixivEncyclopedia {
             breadcrumb: this.breadcrumb,
             content: this.content,
             metainfo: this.metainfo,
+            relation: this.relation,
         };
     }
 }
