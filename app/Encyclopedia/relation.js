@@ -10,8 +10,8 @@ class EntryRelationship {
     }
     get_links(element = Element) {
         const elements = element.querySelectorAll("a");
-        const get_text = i => i.textContent.trim();
-        const has_text = t => t !== "" && t !== "もっと見る";
+        const get_text = i => i.textContent.replace("もっと見る", "").trim();
+        const has_text = t => t !== "";
         return [...elements].map(get_text).filter(has_text);
     }
     get result() {
