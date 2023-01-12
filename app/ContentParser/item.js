@@ -1,6 +1,7 @@
 import { GetImageByEmbedimage } from "../Encyclopedia/imagescripts.js";
 import { GetTextByHtml, GetTitle } from "../TextParser/script.js";
 import { GetAllLinksContent } from "./link.js";
+import { GetTableData } from "./table.js";
 
 class ContentInterface {
     constructor(source = "") {
@@ -31,6 +32,13 @@ class ContentInterface {
         return GetTitle( this.source );
     }
     /**
+     * A JSON data converted from HTML.
+     * @returns {Array}
+     */
+    get table() {
+        return GetTableData( this.source );
+    }
+    /**
      * @typedef {Object} PixpediaSectionContentInterface
      * @property {String} source The HTML
      * @property {PixivImageInfoInterface|null} [image] If the content is an embedded image, return an object. Else, returns null.
@@ -40,8 +48,8 @@ class ContentInterface {
      * @returns {PixpediaSectionContentInterface}
      */
     get result() {
-        const { source, image, texts, title, links } = this;
-        return { source, image, texts, title, links };
+        const { source, image, texts, title, links, table } = this;
+        return { source, image, texts, title, links, table };
     }
 }
 
