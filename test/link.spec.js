@@ -1,4 +1,4 @@
-import LinkContent from "../app/ContentParser/link.js";
+import { LinkContent } from "../app/ContentParser/link.js";
 import { strictEqual, deepStrictEqual } from "assert";
 
 
