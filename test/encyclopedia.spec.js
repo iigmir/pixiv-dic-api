@@ -44,5 +44,51 @@ describe("Main parser module", () => {
             strictEqual( response.status.message, "normal" );
         }
     });
+    it("should return relation", async () => {
+        // Infos
+        const expected = {
+            parents: [
+                "μ's"
+            ],
+            children: [
+                "ラブアローシュート",
+                "海未ちゃん顔芸シリーズ",
+                "うっみうっみうー",
+                "もっと見る",
+                "あなたは最低です!",
+                "うみキチ",
+                "山頂アタック",
+                "海未ちゃんは不憫",
+                "海未開き",
+                "海未の日",
+                "海未"
+            ],
+            siblings: [
+                "矢澤にこ",
+                "南ことり",
+                "絢瀬絵里",
+                "もっと見る",
+                "東條希",
+                "西木野真姫",
+                "小泉花陽",
+                "高坂穂乃果",
+                "星空凛",
+                "BiBi"
+            ],
+            categories: [
+                "キャラクター",
+                "アニメ",
+                "音楽"
+            ],
+        };
+        // Functions
+        const response = await main(vaild_input);
+        if( is_stable(response) ) {
+            const relation = response.relation;
+            deepStrictEqual( relation, expected );
+        } else {
+            strictEqual( response.status.message, "normal" );
+        }
+    });
 });
 

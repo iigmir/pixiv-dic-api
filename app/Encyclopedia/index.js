@@ -110,17 +110,19 @@ class PixivEncyclopedia {
      * @returns {PixivEncyclopediaInterface}
      */
     get result() {
-        if( this.status.message !== "normal" ) {
+        const status = this.status;
+        if( status.message !== "normal" ) {
             return {
-                status: this.status,
+                status,
                 summary: null,
                 breadcrumb: null,
                 content: null,
                 metainfo: null,
+                relation: null,
             };
         }
         return {
-            status: this.status,
+            status,
             summary: this.summary,
             breadcrumb: this.breadcrumb,
             content: this.content,
