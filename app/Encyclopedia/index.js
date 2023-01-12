@@ -1,4 +1,5 @@
 import { main as generate_breadcrumb } from "./breadcrumb.js";
+import { GetPixpediaMetainfo } from "./metainfo.js";
 import PageSourceDOM from "./dom.js";
 import PageStatus from "./status.js";
 import PixpediaSummary from "./summary.js";
@@ -14,6 +15,7 @@ class PixivEncyclopedia {
         this.document = null;
         this.status_object = null;
         this.content = null;
+        this.metainfo = null;
     }
     // Status
     set_status_object(entry, document) {
@@ -53,6 +55,10 @@ class PixivEncyclopedia {
         this.content = content.result;
         return Promise.resolve();
     }
+    // Metainfo
+    set_metainfo() {
+        this.metainfo = GetPixpediaMetainfo(this.document);
+    }
     /**
      * @returns {PixpediaBreadcumbInterface[]}
      */
@@ -74,6 +80,7 @@ class PixivEncyclopedia {
             ]);
             actions.then( () => {
                 this.set_content();
+                this.set_metainfo();
                 resolve();
             }).catch( (error) => {
                 reject(error);
