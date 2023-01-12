@@ -27,6 +27,9 @@ class LinkContent {
         if( this.mode === "encyclopedia" ) {
             return decodeURIComponent( this.href.replace(/^\/a\//g, "") );
         }
+        if( this.mode === "anchor" ) {
+            return this.href.replace( /about:blank/g, "" );
+        }
         return this.href;
     }
     /**
@@ -41,7 +44,8 @@ class LinkContent {
      * Three:
      * 1. `image`
      * 2. `encyclopedia`
-     * 3. `external`
+     * 3. `anchor`
+     * 4. `external`
      *
      * @returns {String}
      */
@@ -51,6 +55,9 @@ class LinkContent {
         }
         if( /^\/a\//g.test(this.href) ) {
             return "encyclopedia";
+        }
+        if( /about:blank/g.test(this.href) ) {
+            return "anchor";
         }
         return "external";
     }
