@@ -101,17 +101,19 @@ class PixivEncyclopedia {
     get result() {
         if( this.status.message !== "normal" ) {
             return {
+                status: this.status,
                 summary: null,
                 breadcrumb: null,
-                status: this.status,
                 content: null,
+                metainfo: null,
             };
         }
         return {
+            status: this.status,
             summary: this.summary,
             breadcrumb: this.breadcrumb,
-            status: this.status,
             content: this.content,
+            metainfo: this.metainfo,
         };
     }
 }
