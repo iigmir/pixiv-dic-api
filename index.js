@@ -1,9 +1,12 @@
 import request from "./app/index.js";
 
-export default (entry = "") => {
-    return new Promise( (resolve, reject) => {
-        const success = data => { resolve( data ); };
-        const failed = error => { reject( error ); };
-        request( entry ).then( success ).catch( failed );
-    } );
-};
+/**
+ * The main function.
+ * @param {String} entry The encyclopedia's entry name.
+ * @returns {Promise} A Promise response.
+ */
+export default (entry = "") => new Promise((resolve, reject) => {
+    request(entry)
+        .then(data => { resolve(data) })
+        .catch(error => { reject(error) });
+});
