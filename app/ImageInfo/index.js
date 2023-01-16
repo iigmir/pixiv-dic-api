@@ -87,15 +87,10 @@ class PixivImageInfo {
      * @returns {PixivImageInfoInterface}
      */
     get result() {
-        return {
-            "id": this.id,
-            "title": this.metadata.result.title,
-            "description": this.metadata.description,
-            "author": this.author,
-            "createDate": this.dates.result.createDate,
-            "uploadDate": this.dates.result.uploadDate,
-            "image_link": this.image_link
-        };
+        const { id, author, image_link, metadata, dates } = this;
+        const { title, description } = metadata;
+        const { createDate, uploadDate } = dates.result;
+        return { id, author, image_link, title, description, createDate, uploadDate };
     }
 }
 
