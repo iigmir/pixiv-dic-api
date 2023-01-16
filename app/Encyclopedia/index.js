@@ -73,6 +73,9 @@ class PixivEncyclopedia {
     get breadcrumb() {
         return generate_breadcrumb( this.status, this.document );
     }
+    /**
+     * Page fetching status
+     */
     get status() {
         return this.status_object.result;
     }
@@ -100,10 +103,12 @@ class PixivEncyclopedia {
     }
     /**
      * @typedef {Object} PixivEncyclopediaInterface
-     * @property {PixpediaSummaryInterface} summary The summary.
-     * @property {PixpediaBreadcumbInterface} breadcrumb The breadcrumb.
-     * @property {PageStatusInterface} status The status.
-     * @property {PixpediaContentInterface} content The content.
+     * @property {PixpediaSummaryInterface} summary The entry's summary. `article#content header` in CSS selector.
+     * @property {PixpediaBreadcumbInterface} breadcrumb The breadcrumb listed where the entry's positison is. `nav#breadcrumbs` in CSS selector.
+     * @property {PageStatusInterface} status Fetching status for the current page.
+     * @property {PixpediaContentInterface} content The entry's content. THE thing all this project about.
+     * @property {Object} metainfo View, creations, modified date, etc.
+     * @property {Object} relation The entry's parent, siblings, categories, etc.
      */
     /**
      * The interface.
@@ -113,7 +118,7 @@ class PixivEncyclopedia {
         const status = this.status;
         if( status.message !== "normal" ) {
             return {
-                status,
+                status: status,
                 summary: null,
                 breadcrumb: null,
                 content: null,
@@ -122,7 +127,7 @@ class PixivEncyclopedia {
             };
         }
         return {
-            status,
+            status: status,
             summary: this.summary,
             breadcrumb: this.breadcrumb,
             content: this.content,
