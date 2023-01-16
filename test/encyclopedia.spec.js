@@ -3,13 +3,12 @@ import { strictEqual, deepStrictEqual } from "assert";
 
 const is_stable = response => response.status.message === "normal";
 
-describe("Main parser module", () => {
+describe("Main parser module", async () => {
     const vaild_input = "園田海未";
-    it("should return a summary", async () => {
+    const response = await main(vaild_input);
+    it("should return a summary", () => {
         // Infos
         const expected = "『ラブライブ!』の登場人物。通称「海未ちゃん」。";
-        // Functions
-        const response = await main(vaild_input);
         if( is_stable(response) ) {
             const abstract = response.summary.abstract;
             strictEqual( abstract, expected );
@@ -17,14 +16,12 @@ describe("Main parser module", () => {
             strictEqual( response.status.message, "normal" );
         }
     });
-    it("should return a breadcrumb", async () => {
+    it("should return a breadcrumb", () => {
         // Infos
         const expected = {
             name: "ピクシブ百科事典",
             position: 1
         };
-        // Functions
-        const response = await main(vaild_input);
         if( is_stable(response) ) {
             const breadcrumb = response.breadcrumb;
             deepStrictEqual( breadcrumb[0], expected );
@@ -32,11 +29,9 @@ describe("Main parser module", () => {
             strictEqual( response.status.message, "normal" );
         }
     });
-    it("should return content", async () => {
+    it("should return content", () => {
         // Infos
         const expected = 8;
-        // Functions
-        const response = await main(vaild_input);
         if( is_stable(response) ) {
             const content = response.content;
             strictEqual( content.length, expected );
@@ -81,8 +76,6 @@ describe("Main parser module", () => {
                 "音楽"
             ],
         };
-        // Functions
-        const response = await main(vaild_input);
         if( is_stable(response) ) {
             const relation = response.relation;
             deepStrictEqual( relation, expected );

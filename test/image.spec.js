@@ -2,7 +2,7 @@ import { strictEqual, deepStrictEqual } from "assert";
 import { GetImageByEmbedimage, GetInageById } from "../app/Encyclopedia/imagescripts.js";
 
 describe("Image module", () => {
-    describe("input by Embedimage", () => {
+    describe("input by Embedimage", async () => {
         const embedimage = "<div class=\"embedimage\"><a href=\"https://www.pixiv.net/artworks/49284361\" title=\"海未誕\" data-image-url=\"https://i.pximg.net/c/600x600/img-master/img/2015/03/15/04/37/46/49284361_p0_master1200.jpg\" data-author-name=\"しらび\" data-author-url=\"http://www.pixiv.net/member.php?id=216403\" data-caption=\"海未ちゃん誕生日おめでとう\" target=\"_blank\" class=\"illust\" gtm-class=\"article-body_illust\" gtm-id=\"49284361\"><img src=\"https://i.pximg.net/c/260x260/img-master/img/2015/03/15/04/37/46/49284361_p0_square1200.jpg\" alt=\"海未誕\"></a></div>";
         const expected = {
             "id": "49284361",
@@ -25,16 +25,14 @@ describe("Image module", () => {
                 "height": 1353
             }
         };
-        it("should return ID", async () => {
-            const response = await GetImageByEmbedimage(embedimage);
+        const response = await GetImageByEmbedimage(embedimage);
+        it("should return ID", () => {
             strictEqual( response.id, expected.id );
         });
-        it("should return author", async () => {
-            const response = await GetImageByEmbedimage(embedimage);
+        it("should return author", () => {
             deepStrictEqual( response.author, expected.author );
         });
-        it("should return metadata", async () => {
-            const response = await GetImageByEmbedimage(embedimage);
+        it("should return metadata", () => {
             deepStrictEqual( response.title, expected.title );
             deepStrictEqual( response.description, expected.description );
         });

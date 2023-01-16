@@ -3,14 +3,13 @@ import { strictEqual, deepStrictEqual } from "assert";
 
 const is_stable = response => response.status.code === 200;
 
-describe("Content module", () => {
+describe("Content module", async () => {
     const vaild_input = "園田海未";
+    const response = await main(vaild_input);
     describe( "Basic", () => {
         it("should have a HTML source", async () => {
             // Infos
             const expected = "string";
-            // Functions
-            const response = await main(vaild_input);
             if( is_stable(response) ) {
                 const content = response.content[0].contents[0];
                 strictEqual( typeof(content.source), expected );
@@ -23,8 +22,6 @@ describe("Content module", () => {
         it("should have an image if it is an image", async () => {
             // Infos
             const expected = "49284361";
-            // Functions
-            const response = await main(vaild_input);
             if( is_stable(response) ) {
                 const content = response.content[2].contents[0];
                 strictEqual( content.image.id, expected );
@@ -37,8 +34,6 @@ describe("Content module", () => {
         it("should have a text if it is a text", async () => {
             // Infos
             const expected = ["「それが穂乃果の凄い所なんです。わたしもことりも、μ'sのみんなもそう思っています」"];
-            // Functions
-            const response = await main(vaild_input);
             if( is_stable(response) ) {
                 const content = response.content[0].contents[2];
                 deepStrictEqual( content.texts, expected );
@@ -47,6 +42,5 @@ describe("Content module", () => {
             }
         });
     } );
-    describe( "Basic", () => {} );
-
+    // describe( "Basic", () => {} );
 });
