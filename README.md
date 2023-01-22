@@ -10,3 +10,4 @@ The main function returns a Promise.
 
 * `npm start {ENTRY}`
 * `npm run io {ENTRY}`: To get the entry API and put it into the `/dist` dir.
+* `npm test`: To run unit tests.
